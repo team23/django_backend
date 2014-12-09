@@ -35,9 +35,10 @@ setup(
         read('CHANGES.rst'))),
     install_requires=[
         'django-floppyforms',
-        'django-localstate',
         'django-superform',
-        'django-viewset',
+        # These don't have pypi releases yet.
+        #'django-localstate',
+        #'django-viewset',
 
         # Optional dependencies:
         #
