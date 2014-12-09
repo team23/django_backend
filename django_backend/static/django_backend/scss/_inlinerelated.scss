@@ -1,0 +1,11 @@
+.inline-related {
+    [data-inline-related-list] {
+        margin-bottom: 15px;
+    }
+
+    [data-inline-related-update],
+    [data-inline-related-delete] {
+        cursor: pointer;
+        color: inherit;
+    }
+}

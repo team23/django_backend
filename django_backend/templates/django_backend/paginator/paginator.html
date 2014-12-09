@@ -1,0 +1,41 @@
+{% load i18n django_backend_page_slice_tags django_backend_tags %}
+
+{% if page_obj %}
+    {% page_slices page_obj as page_slices by 5 1 %}
+    {% if page_slices %}
+        <div class="paginator pages-{% for slice in page_slices %}{{ slice|length }}{% endfor %}">
+            <ul class="pages">
+                {% if page_obj.has_previous %}
+                    {# {% with 1 as page_number %}<li class="first-page" data-page="{{ page_number }}"><a href="{% filter normalize_space %}{% if page_link_template %}{% include page_link_template %}{% else %}{% include 'common/paginator/paginator_link.html' %}{% endif %}{% endfilter %}">{% trans "erste Seite" %}</a></li>{% endwith %} #}
+                    {% with page_obj.previous_page_number as page_number %}
+                        <li class="previous-page" data-page="{{ page_number }}"><a href="
+                            {% filter normalize_space %}{% if page_link_template %}{% include page_link_template %}{% else %}{% include 'django_backend/paginator/paginator_link.html' %}{% endif %}{% endfilter %}">{% trans "prev" %}</a>
+                        </li>{% endwith %}
+                {% endif %}
+                {% for slice in page_slices %}
+                    {% for spage in slice %}
+                        {% ifequal spage page_obj.number %}
+                            <li class="page current"><span>{{ spage }}</span></li>
+                        {% else %}
+                            <li class="page" data-page="{{ spage }}"><a href="
+                                    {% filter normalize_space %}{% with spage as page_number %}{% if page_link_template %}{% include page_link_template %}{% else %}{% include 'django_backend/paginator/paginator_link.html' %}{% endif %}{% endwith %}{% endfilter %}">{{ spage }}</a>
+                            </li>
+                        {% endifequal %}
+                    {% endfor %}
+                    {% if not forloop.last %}
+                        <li class="page-ellipsis"><span>…</span></li>
+                    {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                    {% with page_obj.next_page_number as page_number %}
+                        <li class="next-page" data-page="{{ page_number }}"><a href="
+                            {% filter normalize_space %}{% if page_link_template %}{% include page_link_template %}{% else %}{% include 'django_backend/paginator/paginator_link.html' %}{% endif %}{% endfilter %}">{% trans "next" %}</a>
+                        </li>{% endwith %}
+                    {# {% with page.paginator.num_pages as page_number %}<li class="last-page" data-page="{{ page_number }}"><a href="{% filter normalize_space %}{% if page_link_template %}{% include page_link_template %}{% else %}{% include 'common/paginator/paginator_link.html' %}{% endif %}{% endfilter %}">{% trans "letzte Seite" %}</a></li>{% endwith %} #}
+                {% endif %}
+            </ul>
+            <div class="clear"></div>
+        </div>
+    {% endif %}
+    <div class="clear"></div>
+{% endif %}

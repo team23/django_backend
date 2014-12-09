@@ -1,0 +1,1 @@
+{% load django_backend_query_tags %}{{ request.path }}?{% query_string page=page_number extends request.GET %}

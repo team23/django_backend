@@ -1,0 +1,29 @@
+$head-separator-width: 2px;
+$head-separator-color: #C2C2C2;
+
+.head {
+    border-bottom: solid $head-separator-width $head-separator-color;
+    margin-bottom: 30px;
+
+    .navbar {
+        &.navbar-default {
+            background-color: inherit;
+            border-width: 0px;
+        }
+
+        .navbar-nav {
+            margin-top: 10px;
+        }
+
+        .navbar-brand {
+            display: block;
+            background: url('../images/logo.png') no-repeat;
+            width: 225px;
+            height: 50px;
+            text-indent: -999em;
+            padding: 0;
+            margin: 10px 5px;
+        }
+    }
+}
+

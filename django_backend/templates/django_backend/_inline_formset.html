@@ -1,0 +1,27 @@
+{% load floppyforms %}
+
+<div class="panel panel-default">
+
+    {{ formset.management_form }}
+
+    <div class="panel-heading clearfix">
+        {{ formset.model }}
+    </div>
+
+    <div class="panel-body region-component-list">
+        <div class="region-component template">
+            {% for field in formset.empty_form %}
+                {{ field.as_hidden }}
+            {% endfor %}
+        </div>
+        {% for inline_form in formset %}
+            <div>
+                {% for field in inline_form %}
+                    {{ field.as_hidden }}
+                {% endfor %}
+
+                {% form inline_form using "django_backend/formlayout/table.html" %}
+            </div>
+        {% endfor %}
+    </div>
+</div>

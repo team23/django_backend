@@ -1,0 +1,76 @@
+{% extends "django_backend/base_dialog.html" %}
+{% load i18n floppyforms django_backend_tags %}
+
+
+{% block content %}
+    {% randid as random_id %}
+    {% block translation_links %}
+        {% if not is_dialog and backend.FEATURES.translatable %}
+            <p>
+                {% trans "Translations:" %} {% include "django_backend/_object_translations.html" %}
+            </p>
+        {% endif %}
+    {% endblock %}
+
+    {% block headline %}
+        <div class="headline">
+            <h1>
+                {% block headline_text %}{% blocktrans with object=object %}Delete {{ object }}{% endblocktrans %}{% endblock %}
+                {% if object.pk and object.get_absolute_url %}
+                    <a href="{{ object.get_absolute_url }}" target="_blank" class="glyphicon glyphicon-new-window btn-xs" title="{% trans 'view online' %}"></a>
+                {% endif %}
+            </h1>
+        </div>
+    {% endblock %}
+
+    {% block form %}
+        {% if perms_needed or protected %}
+            {% if perms_needed %}
+                <p>
+                    {% blocktrans with object=object %}Deleting the <strong>{{ object }}</strong> would result in
+                    deleting related objects, but your account doesn't have
+                    permission to delete the following types of objects:{% endblocktrans %}
+                </p>
+                <ul>
+                {% for object in perms_needed %}
+                    <li>{{ object }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+            {% if protected %}
+                <p>
+                    {% blocktrans with object=object %}Deleting the <strong>{{ object }}</strong> would require
+                    deleting the following protected related objects:{% endblocktrans %}
+                </p>
+                <ul>
+                {% for object in protected %}
+                    <li>{{ object }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+            {% if backend|has_read_permission:user|for_object:object %}
+            <p>
+                <a href="{% backend_url backend.urlnames.views.read.name pk=object.pk %}">{% blocktrans %}Ok, go back.{% endblocktrans %}</a>
+            </p>
+            {% endif %}
+        {% else %}
+            <form action="" method="post" novalidate>{% csrf_token %}
+                <p>
+                    {% blocktrans with object=object %}Are you sure you want to delete
+                    <strong>{{ object }}</strong>? All of the following related
+                    items will be deleted:{% endblocktrans %}
+                </p>
+                <ul>{{ to_delete|format_unordered_list:"django_backend/object_delete_related_item.html" }}</ul>
+                {% block submit_row %}
+                    <div class="pull-left">
+                        <button type="submit" name="dismiss" value="1" class="btn btn-default default">{% trans "do not delete and go back" %}</button>
+                    </div>
+                    <div class="pull-right">
+                        <button type="submit" name="delete" value="1" class="btn btn-danger">{% trans "delete" %}</button>
+                    </div>
+                {% endblock %}
+            </form>
+        {% endif %}
+    {% endblock %}
+{% endblock %}
+

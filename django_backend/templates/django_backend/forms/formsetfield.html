@@ -1,0 +1,68 @@
+{% load floppyforms i18n django_backend_tags %}
+{% with form_opts=formset.form|model_opts %}
+{% with model_opts=form_opts.model|model_opts order_field=form_opts.model.order_field %}
+<div class="formset inline-label" data-formset-prefix="{{ formset.prefix }}"{% if order_field %} data-order-field="{{ order_field }}"{% endif %}>
+    {{ formset.management_form }}
+
+    {{ formset.non_form_errors }}
+
+    {% with form=formset.empty_form %}
+        <div class="formset-form template panel panel-default">
+            <div class="panel-body">
+                {% if not readonly %}
+                <div class="toolbar">
+                    <div class="draghandle">
+                        <span class="draghandle move glyphicon glyphicon-move" title='{% trans "Drag to re-order" %}'></span>
+                    </div>
+
+                    <div class="tools">
+                        <span class="form-delete glyphicon glyphicon-remove" title='{% trans "Remove" %}'></span>
+                        <span class="form-undo-delete glyphicon glyphicon-repeat" title='{% trans "Undo remove" %}'></span>
+                    </div>
+                </div>
+                {% endif %}
+                <div class="formset-fields">
+                    {% comment %}
+                    We are inside a formfield, so we need to undefine the
+                    values that are set from the widget, otherwise they will be
+                    passed down to the inline forms widgets which will result
+                    in an uncorrect rendering.
+                    {% endcomment %}
+
+                    {% form form using "floppyforms/layouts/bootstrap.html" with name=None value=None attrs=None %}
+                </div>
+            </div>
+        </div>
+    {% endwith %}
+
+    {% for form in formset %}
+        <div class="formset-form panel panel-default">
+            <div class="panel-body">
+                {% if not readonly %}
+                <div class="toolbar">
+                    <div class="draghandle">
+                        <span class="draghandle move glyphicon glyphicon-move" title='{% trans "Drag to re-order" %}'></span>
+                    </div>
+
+                    <div class="tools">
+                        <span class="form-delete glyphicon glyphicon-remove" title="{% blocktrans with instance=form.instance %}Remove {{ instance }}{% endblocktrans %}"></span>
+                        <span class="form-undo-delete glyphicon glyphicon-repeat" title="{% blocktrans with instance=form.instance %}Undo remove {{ instance }}{% endblocktrans %}"></span>
+                    </div>
+                </div>
+                {% endif %}
+                <div class="formset-fields">
+                    {% form form using "floppyforms/layouts/bootstrap.html" with name=None value=None attrs=None %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    {% if not formset|length and readonly %}
+        -
+    {% endif %}
+
+    {% if not readonly %}
+        <a href="#" class="add-form"><span class="glyphicon glyphicon-plus-sign"></span> {% trans "Add new" %}</a>
+    {% endif %}
+</div>
+{% endwith %}
+{% endwith %}

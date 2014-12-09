@@ -1,0 +1,15 @@
+{% extends "django_backend/base_site.html" %}
+{% load i18n floppyforms %}
+
+
+{% block body %}
+<div class="container">
+    <h1>{% blocktrans %}Logged out{% endblocktrans %}</h1>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <p>{% blocktrans %}You are logged out now.{% endblocktrans %}</p>
+            <p><a href="{% url "django_backend:login" %}">{% blocktrans %}Login again{% endblocktrans %}</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

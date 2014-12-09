@@ -1,0 +1,29 @@
+{% load floppyforms django_backend_tags %}
+
+{% block row %}
+    <tr class="{% render row.states %}">
+        <th>
+            {% block label %}
+                {% comment %}<label{% if row.fields.0|id %} for="{{ row.fields.0|id }}"{% endif %}>{% endcomment %}
+                <label>
+                    {{ row_label }}{% if row_required %}<span class="required-marker">*</span>{% endif %}{% if row_label|last not in ".:!?" %}:{% endif %}
+                </label>
+            {% endblock %}
+            {% block row_help_text %}
+                {% if row_help_text %}
+                    <div class="helptext">
+                        <div class="glyphicon glyphicon-question-sign"></div>
+                        <div class="text">{{ row_help_text }}</div>
+                    </div>
+                {% endif %}
+            {% endblock %}
+        </th>
+        {% for field in row_fields %}
+            {% block field %}
+                <td class="{% render field.states %}">
+                    {% render field %}
+                </td>
+            {% endblock %}
+        {% endfor %}
+    </tr>
+{% endblock %}

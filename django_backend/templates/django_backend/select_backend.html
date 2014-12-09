@@ -1,0 +1,34 @@
+{% extends "django_backend/base_dialog.html" %}
+{% load i18n %}
+
+
+{% block content %}
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <p>
+                {% blocktrans %}Please select a content type from below.{% endblocktrans %}
+            </p>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>{% blocktrans %}Name{% endblocktrans %}</th>
+                <th>{% blocktrans %}Actions{% endblocktrans %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for backend in backends %}
+                <tr>
+                    <td>
+                        {{ backend.verbose_name }}
+                    </td>
+                    <td>
+                        {% include backend.inline_select_actions_template_name with backend=backend language=language_id %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

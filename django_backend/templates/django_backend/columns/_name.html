@@ -1,0 +1,14 @@
+{% load django_backend_tags %}
+
+{% block name %}
+    {% if backend.FEATURES.translatable and object.language != language_id %}
+        {# Do not link to detail page if it's not translated. #}
+        {{ object }}
+    {% else %}
+        {% with has_read_permission=backend|has_read_permission:user|for_object:object %}
+            {% if has_read_permission %}<a href="{% backend_url backend.urlnames.views.read.name pk=object.pk %}">{% endif %}
+                {{ object }}
+            {% if has_read_permission %}</a>{% endif %}
+        {% endwith %}
+    {% endif %}
+{% endblock %}

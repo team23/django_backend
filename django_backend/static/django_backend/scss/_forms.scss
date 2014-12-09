@@ -1,0 +1,254 @@
+textarea {
+  resize:vertical;
+}
+
+.field-content {
+  display: block;
+}
+
+
+.formset-form.template {
+    display: none;
+}
+
+ul.checkbox-multiselect,
+ul.radio-select {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  li {
+    list-style: none;
+    > label {
+      margin-bottom: 2px;
+    }
+  }
+}
+
+@mixin form-no-delete-state {
+  .form-update,
+  .form-delete {
+      display: inline;
+  }
+  .form-undo-delete {
+      display: none;
+  }
+}
+
+@mixin form-delete-state {
+  .form-update,
+  .form-delete {
+      display: none;
+  }
+  .form-undo-delete {
+      display: inline;
+  }
+}
+
+.formset-form {
+  .draghandle {
+    float: left;
+    padding-right: 10px;
+  }
+  // Hide draghandle on formsets that do not allow ordering.
+  .no-sortable > & .draghandle {
+    display: none;
+  }
+
+  .move {
+    cursor: move;
+  }
+
+  .toolbar {
+    @include clearfix();
+  }
+
+  .change-tools {
+    float: left;
+  }
+  .tools {
+    float: right;
+
+    .edit-translate .dropdown-toggle {
+      padding: 1px 5px;
+      line-height: 1.5;
+      box-shadow: none;
+      -webkit-box-shadow: none;
+    }
+  }
+
+  .toolbar a,
+  .tools a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .form-delete,
+  .form-undo-delete {
+    cursor: pointer;
+  }
+
+  @include form-no-delete-state();
+
+  &.delete {
+    border-radius: 5px;
+    background-color: #ffe0e0;
+
+    @include form-delete-state();
+
+    .formset-form:not(.delete) {
+        @include form-no-delete-state();
+    }
+  }
+
+  .formset-fields {
+    label {
+      width: 30%;
+      vertical-align: top;
+      padding-top: 7px;
+    }
+//    .select-related-field,
+//    .form-control {
+//      display: inline-block;
+//      width: 65%;
+//    }
+    .select-related-field {
+      padding-top: 6px;
+    }
+    textarea.form-control {
+      height: 80px;
+    }
+    .helptext {
+      display: inline-block;
+      padding-left: 30.5%;
+      margin-top: 5px;
+    }
+  }
+}
+
+.filter-form {
+  margin-bottom: 25px;
+  border: 1px solid #ccc;
+  margin-top: 40px;
+  position: relative;
+  padding: 20px 15px 15px;
+  @include clearfix();
+
+  *:focus {
+    border-color: #444;
+    -webkit-box-shadow: none ;
+    box-shadow: 0 none;
+  }
+
+  .legend {
+    padding: 0 15px;
+    font-weight: bold;
+    position: absolute;
+    top: -11px;
+    left: 11px;
+    height: 22px;
+    line-height: 22px;
+    background-color: #ffffff;
+  }
+
+  .filter-form-content {
+    width: 75%;
+    float: left;
+    .form-group {
+      margin-bottom: 5px;
+      @include clearfix();
+      > label {
+        float: left;
+        margin: 0;
+        height: 28px;
+        line-height: 28px;
+      }
+      > .field-content {
+        float: right;
+        .form-control {
+          height: 28px;
+          padding: 3px 12px;
+        }
+        select[multiple].form-control, select[size].form-control {
+          height: auto;
+        }
+      }
+    }
+  }
+  .filter-form-button {
+    width: 16%;
+    float: right;
+    position: absolute;
+    bottom: 20px;
+    right: 15px;
+    button {
+      width: 100%;
+      height: 28px;
+      padding: 3px 12px;
+    }
+  }
+}
+
+.filter-form.toggeling-filter-form {
+  opacity: 0.8;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+
+  .filter-form-toggler {
+    cursor: pointer;
+  }
+
+  .legend {
+    padding: 8px 15px;
+    background-color: #ddd;
+    font-weight: bold;
+    .glyphicon {
+      float: right;
+      background-color: #fff;
+      padding: 5px;
+      display: block;
+      width: 25px;
+      margin-top: -3px;
+      text-align: center;
+    }
+  }
+
+  .toggled-content {
+    padding: 25px 15px 10px;
+    background-color: #e6e6e6;
+    border-top: 1px solid #ccc;
+    display: none;
+  }
+}
+.no-js {
+  .filter-form .toggled-content {
+    display: block;
+  }
+}
+
+.helptext {
+  font-weight: normal;
+  font-size: 0.8em;
+  color: #999;
+  font-style: italic;
+  .glyphicon {
+    font-size: 1.5em;
+    float: left;
+    margin-right: 5px;
+  }
+  .text {
+    overflow: hidden;
+  }
+}
+
+
+.inline-label {
+  .form-group {
+    > label {
+      width: 30%;
+    }
+    .field-content {
+      display: inline-block;
+      width: 65%;
+    }
+  }
+}

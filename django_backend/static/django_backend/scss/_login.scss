@@ -1,0 +1,39 @@
+$login-form-width: 420px;
+$login-form-height: 23em;
+
+$login-logo-height: 50px;
+$login-logo-width: 225px;
+$login-logo-margin: 2 / 3 * $login-logo-height;
+
+body.login {
+    background-color: $shaded-body-background-color;
+}
+
+form.login {
+    .panel {
+        margin: 0;
+
+        .panel-body {
+            padding: 1.5em 3em;
+        }
+    }
+
+    h1 {
+        background-image: url("../images/logo.png");
+        background-repeat: no-repeat;
+        height: $login-logo-height;
+        width: $login-logo-width;
+        margin: auto;
+        margin-top: $login-logo-margin;
+        margin-bottom: $login-logo-margin;
+        text-indent: -999em;
+    }
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: - $login-form-height / 2;
+    margin-left: - $login-form-width / 2;
+    width: $login-form-width;
+    height: $login-form-height;
+}

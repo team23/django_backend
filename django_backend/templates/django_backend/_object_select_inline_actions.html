@@ -1,0 +1,22 @@
+{% load i18n django_backend_tags %}
+<span class="btn-group pull-right">
+
+    {% if backend|has_add_permission:user %}
+        <a href="{% backend_url backend.urlnames.views.create_private.name %}" class="btn btn-default btn-xs">{% trans "Create" %}</a>
+    {% else %}{% if backend|has_list_permission:user %}
+        <a href="{% backend_url backend.urlnames.views.select.name %}" class="btn btn-default btn-xs">{% trans "Select reusable" %}</a>
+    {% endif %}{% endif %}
+
+    {# Hide the dropdown completely if the user has no add permission, since the select will be displayed anyways (see above). #}
+    {% if backend|has_add_permission:user %}
+        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+            <span class="sr-only">{% trans "Toggle action-dropdown" %}</span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+                <li role="presentation"><a href="{% backend_url backend.urlnames.views.create.name %}">{% trans "Create new reusable" %}</a></li>
+                <li role="presentation"><a href="{% backend_url backend.urlnames.views.select.name %}">{% trans "Select reusable" %}</a></li>
+        </ul>
+    {% endif %}
+
+</span>

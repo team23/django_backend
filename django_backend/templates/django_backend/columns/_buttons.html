@@ -1,0 +1,43 @@
+{% load i18n django_backend_tags %}
+<span class="btn-group pull-right">
+    {% if backend|has_translate_permission:user|for_object:object or backend|has_change_permission:user|for_object:object %}
+        {% if backend.FEATURES.translatable and object.language != language_id %}
+            {% if backend|has_translate_permission:user|for_object:object %}
+                <a href="{% backend_url backend.urlnames.views.translate.name translate_into=backend.language.active origin_id=object.pk %}" class="btn btn-default btn-xs">{% trans "Translate" %}</a>
+            {% endif %}
+        {% else %}
+            {% if backend|has_change_permission:user|for_object:object %}
+                <a href="{% backend_url backend.urlnames.views.update.name pk=object.pk %}" class="btn btn-default btn-xs">{% trans "Edit" %}</a>
+            {% endif %}
+        {% endif %}
+    {% else %}
+        {% if backend|has_read_permission:user|for_object:object %}
+            <a href="{% backend_url backend.urlnames.views.read.name pk=object.pk %}" class="btn btn-default btn-xs">{% trans "Show" %}</a>
+        {% endif %}
+    {% endif %}
+
+    {% if backend.FEATURES.translatable %}
+        {# Either we display translation links and the user has the translate permission ... #}
+        {# ... or we display "show translation" links and the user has read permissions. #}
+        {% if backend|has_translate_permission:user|for_object:object and object.untranslated_languages or backend|has_read_permission:user and object.translations.exists %}
+            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+                <span class="sr-only">{% trans "Toggle action-dropdown" %}</span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                {% for translation in object.translations.all %}
+                    {% if backend|has_read_permission:user|for_object:translation %}
+                        <li role="presentation"><a href="{% backend_url backend.urlnames.views.read.name language=translation.language pk=translation.pk %}">
+                            <span class="glyphicon"></span> {% blocktrans with language=translation.language %}Show {{ language }} translation{% endblocktrans %}</a></li>
+                    {% endif %}
+                {% endfor %}
+                {% if backend|has_translate_permission:user|for_object:object %}
+                    {% for language in object.untranslated_languages %}
+                        <li role="presentation"><a href="{% backend_url backend.urlnames.views.translate.name translate_into=language.0 origin_id=object.pk %}">
+                            <span class="glyphicon glyphicon-flag"></span> {% blocktrans with language=language.0|display_language %}Translate into {{ language }}{% endblocktrans %}</a></li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        {% endif %}
+    {% endif %}
+</span>

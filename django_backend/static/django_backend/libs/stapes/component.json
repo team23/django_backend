@@ -1,0 +1,5 @@
+{
+    "name": "stapes",
+    "version": "0.8.1",
+    "main": "./stapes.js"
+}

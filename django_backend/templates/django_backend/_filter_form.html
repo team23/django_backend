@@ -1,0 +1,27 @@
+{% load i18n floppyforms %}
+{% comment %}<div class="filter-form inline-label {% if filter_form.changed_data %}toggled-expanded{% else %}toggled-compressed{% endif %}">
+    <div class="legend filter-form-toggler">{% trans "Filter " %}&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-down"></span>&nbsp;</div>
+    <div class="toggled-content">
+        <form action="" method="get" enctype="multipart/form-data" novalidate>
+            {% form filter_form using 'floppyforms/layouts/bootstrap.html' %}
+            <hr />
+            <div class="text-right">
+{#                <a href="" class="btn btn-default"><span><span>{% trans "Reset filters" %}</span></span></a>#}
+                <button type="submit" class="btn btn-default"><span><span>{% trans "Apply filters" %}</span></span></button>
+            </div>
+        </form>
+    </div>
+</div>{% endcomment %}
+
+
+<form action="" method="get" enctype="multipart/form-data" novalidate>
+    <div class="filter-form inline-label">
+        <div class="legend">{% trans "Filter " %}</div>
+        <div class="filter-form-content">
+            {% form filter_form using 'floppyforms/layouts/bootstrap.html' %}
+        </div>
+        <div class="filter-form-button">
+            <button type="submit" class="btn btn-default"><span><span>{% trans "Apply filters" %}</span></span></button>
+        </div>
+    </div>
+</form>

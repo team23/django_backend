@@ -1,0 +1,7 @@
+{% load django_backend_tags %}
+{{ backend.verbose_name }}:
+{% if backend|has_read_permission:user %}
+    <a href="{% backend_url backend.urlnames.views.read.name pk=object.pk %}">{{ object }}</a>
+{% else %}
+    {{ object }}
+{% endif %}

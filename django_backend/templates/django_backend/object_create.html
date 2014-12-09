@@ -1,0 +1,6 @@
+{% extends "django_backend/object_form.html" %}
+{% load i18n %}
+
+
+{% block headline_text %}{% blocktrans with verbose_name=backend.verbose_name %}Add new {{ verbose_name }}{% endblocktrans %}{% endblock %}
+{% block translation_links %}{% endblock %}

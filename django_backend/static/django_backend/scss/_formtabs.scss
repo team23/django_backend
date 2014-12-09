@@ -1,0 +1,8 @@
+// We need to match by <li> here in order to override settings that bootstrap
+// sets.
+.nav-tabs > li.has-error {
+    // Also :hover is needed to take precendence over bootstrap styles.
+    &, a, a:hover {
+        color: $state-danger-text;
+    }
+}

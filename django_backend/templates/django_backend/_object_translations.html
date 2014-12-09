@@ -1,0 +1,28 @@
+{% load django_backend_tags %}
+
+{% for translation in object.translations %}
+    {% if translation.language != language_id %}
+        {% if backend|has_read_permission:user|for_object:object %}
+            <a href="{% backend_url backend.urlnames.views.read.name language=translation.language pk=translation.pk %}"
+                class="label label-success" title="go to {{ translation.language }} translation">
+                {{ translation.language }}
+            </a>
+        {% else %}
+            <span class="label label-success">
+                {{ translation.language }}
+            </span>
+        {% endif %}
+    {% endif %}
+{% endfor %}
+
+{% for language in object.untranslated_languages %}
+    {% if backend|has_translate_permission:user|for_object:object %}
+        <a href="{% backend_url backend.urlnames.views.translate.name translate_into=language.0 origin_id=object.pk %}" class="label label-danger" title="create {{ language.0 }} translation">
+            {{ language.0 }}
+        </a>
+    {% else %}
+        <span class="label label-danger">
+            {{ language.0 }}
+        </span>
+    {% endif %}
+{% endfor %}

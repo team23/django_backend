@@ -1,0 +1,12 @@
+{% load i18n django_backend_tags %}
+<div class="inline-related" data-inline-related="[data-id]">
+    <div data-inline-related-list>
+    {% for object in object_list %}
+        {% render backend.inline_related_object with object=object backend=backend user=user %}
+    {% endfor %}
+    </div>
+
+    {% if not readonly and backend|has_add_permission:user %}
+    <a href="{% backend_url backend.urlnames.views.create.name %}?{{ related_field.name|urlencode }}={{ object.pk|urlencode }}" target="_blank" data-inline-related-add><span class="glyphicon glyphicon-plus-sign"></span> {% trans "Add new" %}</a>
+    {% endif %}
+</div>

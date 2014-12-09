@@ -1,0 +1,5 @@
+{% extends "django_backend/object_create.html" %}
+{% load i18n django_backend_tags %}
+
+
+{% block headline_text %}{% blocktrans with origin=origin language=target_language|display_language %}Translate {{ origin }} into {{ language }}{% endblocktrans %}{% endblock %}

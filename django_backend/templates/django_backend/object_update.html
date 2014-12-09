@@ -1,0 +1,5 @@
+{% extends "django_backend/object_form.html" %}
+{% load i18n floppyforms %}
+
+
+{% block headline_text %}{% blocktrans with object=object %}Update {{ object }}{% endblocktrans %}{% endblock %}

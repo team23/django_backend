@@ -1,0 +1,88 @@
+{% extends "django_backend/base_dialog.html" %}
+{% load i18n django_backend_tags floppyforms django_backend_query_tags %}
+
+
+{% block content %}
+    <div class="headline">
+        <div class="pull-right">
+            {% if backend.parent != backend.base %}
+                {% for subbackend in backend.groups.default %}
+                    {% if subbackend|has_list_permission:user %}
+                        <a href="{% backend_url subbackend.urlnames.views.index.name %}" class="btn btn-default btn-sm">{% blocktrans with verbose_name_plural=subbackend.verbose_name_plural %}Manage {{ verbose_name_plural }}{% endblocktrans %}</a>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            {% if backend|has_add_permission:user %}
+                <a href="{% backend_url backend.urlnames.views.create.name %}" class="btn btn-default btn-sm">{% blocktrans with verbose_name=backend.verbose_name %}Add new {{ verbose_name }}{% endblocktrans %}</a>
+            {% endif %}
+        </div>
+        <h1>{{ backend.verbose_name_plural }}</h1>
+    </div>
+
+    {% block content-filters %}
+        {% if filter_form %}
+            {% include "django_backend/_filter_form.html" with filter_form=filter_form %}
+        {% endif %}
+    {% endblock %}
+    {% block content-list %}
+        {% if object_list %}
+            {% if action_form %}
+                <form action="" method="post" novalidate>{% csrf_token %}
+            {% endif %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        {% if action_form %}
+                            <th>
+                                <input type="checkbox" data-select-all=".action-checkbox">
+                            </th>
+                        {% endif %}
+                        {% for column in backend.list_columns.values %}
+                            <th>
+                                {{ column.name }}
+                                {% if column.sort_field %}
+                                    &nbsp;{% spaceless %}
+                                    <a href="?{% query_string order_by=column.sort_field extends request.GET %}" class="sort{% if sort_form.cleaned_data.order_by == column.sort_field %} active{% endif %}"><span class="glyphicon glyphicon-chevron-up" title="{% trans 'Sort' %}"></span></a>
+                                    <a href="?{% query_string order_by=column.reverse_sort_field extends request.GET %}" class="reverse-sort{% if sort_form.cleaned_data.order_by == column.reverse_sort_field %} active{% endif %}"><span class="glyphicon glyphicon-chevron-down" title="{% trans 'Reverse Sort' %}"></span></a>
+                                    {% endspaceless %}
+                                {% endif %}
+                            </th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for object in object_list %}
+                        <tr{% if backend.FEATURES.translatable and object.language != language_id %} class="untranslated"{% endif %}>
+                            {% if action_form %}
+                                <td>
+                                    <input type="checkbox" class="action-checkbox" name="{{ action_form.objects.name }}" value="{{ object.pk }}">
+                                </td>
+                            {% endif %}
+                            {% for column in backend.list_columns.values %}
+                                <td>{% render column %}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="object-list-footer">
+                {% if page_obj.has_other_pages %}
+                    {% include "django_backend/paginator/paginator.html" %}
+                {% endif %}
+                {% if action_form %}
+                    <div class="action-form form-inline">
+                        {% form action_form using %}
+                            {% formrow form.action using "floppyforms/rows/bootstrap.html" %}
+                            <button class="btn btn-default btn-md" type="submit">{% blocktrans %}Go{% endblocktrans %}</button>
+                        {% endform %}
+                    </div>
+                {% endif %}
+            </div>
+            {% if action_form %}
+                </form>
+            {% endif %}
+        {% else %}
+            <p>{% blocktrans with verbose_name_plural=backend.verbose_name_plural %}No {{ verbose_name_plural }} found.{% endblocktrans %}</p>
+        {% endif %}
+    {% endblock %}
+{% endblock %}

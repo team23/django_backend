@@ -1,0 +1,10 @@
+.log-entry {
+    padding: 0.25em 0;
+
+    time {
+        float: right;
+        font-size: 0.8em;
+        line-height: 1em / 0.8;
+        color: #aaa;
+    }
+}

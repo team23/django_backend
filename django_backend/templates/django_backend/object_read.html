@@ -1,0 +1,21 @@
+{% extends "django_backend/object_form.html" %}
+{% load i18n floppyforms django_backend_tags %}
+
+
+{% block read_update_button %}
+    {# Select base_object and if that doesn't exist, then use object. With that we can handle both, revisioned content and normal content items. #}
+    {% with object=base_object|default:origin|default:object %}
+        <div class="pull-right">
+            {% if backend|has_change_permission:user|for_object:object %}
+                <a href="{% backend_url backend.urlnames.views.update.name pk=object.pk %}{% if request.GET.revision %}?revision={{ request.GET.revision }}{% endif %}" onclick="$(this).attr('href', $(this).attr('href') + window.location.hash);" class="btn btn-primary keep-tab">{% blocktrans %}edit{% endblocktrans %}</a>
+            {% endif %}
+            {% if backend|has_delete_permission:user|for_object:object %}
+                <a href="{% backend_url backend.urlnames.views.delete.name pk=object.pk %}{% if request.GET.revision %}?revision={{ request.GET.revision }}{% endif %}" class="btn btn-danger">{% blocktrans %}delete{% endblocktrans %}</a>
+            {% endif %}
+        </div>
+    {% endwith %}
+{% endblock %}
+
+
+{% block submit_row %}{% endblock %}
+{% block region_buttons %}{% endblock %}

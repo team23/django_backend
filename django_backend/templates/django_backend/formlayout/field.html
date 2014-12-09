@@ -1,0 +1,13 @@
+{% load floppyforms django_backend_tags %}
+
+{% block errors %}
+    {% include "floppyforms/errors.html" with errors=field_form_field.errors %}
+{% endblock %}
+{% block widget %}
+    {% if field_name in readonly_fields %}
+        {% formfield field_form_field with readonly=True %}
+        {{ field_form_field.as_hidden }}
+    {% else %}
+        {% formfield field_form_field %}
+    {% endif %}
+{% endblock %}

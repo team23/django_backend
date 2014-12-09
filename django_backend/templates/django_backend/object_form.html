@@ -1,0 +1,106 @@
+{% extends "django_backend/base_dialog.html" %}
+{% load i18n floppyforms django_backend_tags %}
+
+
+{% block content %}
+    {% randid as random_id %}
+    {% block translation_links %}
+        {% if not is_dialog and backend.FEATURES.translatable %}
+            <p>
+                {% trans "Translations:" %} {% include "django_backend/_object_translations.html" %}
+            </p>
+        {% endif %}
+    {% endblock %}
+
+    {% block headline %}
+        <div class="headline">
+            {% if readonly and not is_dialog and backend|has_list_permission:user %}
+                <a href="{% backend_url backend.urlnames.views.index.name %}" class="pull-right">{% trans "go back to list" %}</a>
+            {% endif %}
+            <h1>
+                {% block headline_text %}{{ object }}{% endblock %}
+                {% if object.pk and object.get_absolute_url %}
+                    <a href="{{ object.get_absolute_url }}" target="_blank" class="glyphicon glyphicon-new-window btn-xs" title="{% trans 'view online' %}"></a>
+                {% endif %}
+            </h1>
+        </div>
+    {% endblock %}
+
+    {% block form %}
+        {% form form using %}
+            {% formconfig row using "django_backend/formlayout/tr.html" %}
+            <form action="" method="post" enctype="multipart/form-data" novalidate>{% csrf_token %}
+                {% if form.non_field_errors or form|hidden_field_errors %}
+                    <ul class="errorlist">
+                        {% for error in form.non_field_errors %}<li>{{ error|linebreaksbr }}</li>{% endfor %}
+                        {% for error in form|hidden_field_errors %}<li>{{ error|linebreaksbr }}</li>{% endfor %}
+                    </ul>
+                {% endif %}
+
+                {% block read_update_button %}
+                    <div class="pull-right">
+                        {# Do not show if it's a dialog or if it's a create view #}
+                        {% if not is_dialog and not create %}
+                            {% if backend|has_delete_permission:user|for_object:object %}
+                                <a href="{% backend_url backend.urlnames.views.delete.name pk=object.pk %}{% if request.GET.revision %}?revision={{ request.GET.revision }}{% endif %}" class="btn btn-danger">{% trans "delete" %}</a>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                {% endblock %}
+
+                {% block tabs %}
+                    <ul class="nav nav-tabs">
+                        {% for tab_id, tab in form_tabs.items %}
+                            <li class="{% if forloop.first %}active {% endif %}{% render tab.states %} tab-{{ tab_id }}">
+                                <a
+                                        href="#{{ tab_id }}{% if is_dialog %}{{ random_id }}{% endif %}"
+                                        data-toggle="tab"
+                                        {% if not is_dialog %} data-tab-history="true" data-tab-history-update-url="true"{% endif %}
+                                        >
+                                    {{ tab.name }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endblock %}
+
+                {% block tab_content %}
+                    <div class="tab-content">
+                        {% form form using %}
+                            {% formrow form.meta_title form.meta_canonical using "django_backend/formlayout/tr.html" %}
+                        {% endform %}
+                        {% for tab_id, tab in form_tabs.items %}
+                            <div class="tab-pane{% if forloop.first %} active{% endif %}" id="{{ tab_id }}{% if is_dialog %}{{ random_id }}{% endif %}">
+                                <div class="panel">
+                                    <div class="panel-body">
+                                        {% render tab %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        {# Display hidden fields #}
+                        {% for field in form.hidden_fields %}{% formfield field %}{% endfor %}
+                    </div>
+                {% endblock %}
+
+                {% block submit_row %}
+                    <div class="pull-left">
+                        <button type="submit" name="dismiss" value="1" class="btn btn-danger"
+                            title="Reverts your latest changes and releases the page so it's not longer block for other users.">{% trans "dismiss" %}</button>
+                        {% if not create and backend|has_change_permission:user %}
+                            {% if not is_dialog %}<button type="submit" name="save_continue" value="1" class="btn btn-default">{% trans "save and continue" %}</button>{% endif %}
+                        {% endif %}
+                    </div>
+                    <div class="pull-right">
+                        <button type="submit" name="save_branch" value="draft" class="btn btn-primary default">{% trans "save" %}</button>
+                        {% if backend.FEATURES.versionable %}
+                            {% if create and backend|has_publish_permission:user or backend|has_publish_permission:user|for_object:object %}
+                                <button type="submit" name="save_branch" value="production" class="btn btn-success">{% trans "publish" %}</button>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                {% endblock %}
+            </form>
+        {% endform %}
+    {% endblock %}
+{% endblock %}

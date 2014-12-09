@@ -1,0 +1,8 @@
+.alert-debug {
+  @extend .alert-info;
+}
+
+.alert-error {
+  @extend .alert-danger;
+}
+

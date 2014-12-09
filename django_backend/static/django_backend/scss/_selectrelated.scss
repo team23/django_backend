@@ -1,0 +1,11 @@
+.select-related-field {
+    display: block;
+
+    [data-set-null] {
+        cursor: pointer;
+    }
+
+    &.is-blank [data-set-null] {
+        display: none;
+    }
+}

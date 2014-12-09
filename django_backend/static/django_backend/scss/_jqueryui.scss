@@ -1,0 +1,37 @@
+// DIALOG
+
+.ui-dialog {
+  border-radius: 0;
+  background: $body-background-color none;
+
+  .ui-dialog-titlebar {
+    border-radius: 0;
+    border-width: 0 0 1px 0;
+    background: transparent none;
+
+    .ui-dialog-titlebar-close {
+      background: transparent url(../images/icons/icon_cross_small.png) no-repeat center center;
+      border: 0 none;
+    }
+  }
+}
+
+.ui-widget {
+  font-size: 1em;
+  button {
+    &.btn-xs {
+      font-size: 0.85em; //Hackidy hack, weil.. jqueryui
+    }
+  }
+}
+
+.ui-dialog .ui-dialog-content .dialog-content {
+  margin-bottom: 1em;
+  &:after {
+    content: " ";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+}

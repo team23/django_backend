@@ -1,0 +1,20 @@
+{% extends "django_backend/base_site.html" %}
+{% load i18n floppyforms %}
+
+
+{% block bodyclass %}login{% endblock %}
+
+
+{% block body %}
+<div class="container">
+    <form action="" method="post" role="form" class="login panel panel-default">{% csrf_token %}
+        <div>
+            <div class="panel-body">
+                <h1>{% trans "Django Backend" %}</h1>
+                {% form form using "floppyforms/layouts/bootstrap.html" with inline_label=True %}
+                <input type="submit" class="btn btn-primary pull-right" value="{% trans "Login" %}" />
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+@import '../libs/bootstrap-sass/lib/bootstrap';
+
+
+.label {
+  margin-right: 2px;
+}
+.btn-md {
+  padding: 7px 12px 6px;
+}
+
+input.form-control[type=radio],
+input.form-control[type=checkbox] {
+  width: 17px;
+  height: 17px;
+}
+
+.popover {
+    max-width: 360px;
+    width: 360px;
+}
+
+.panel {
+  margin-bottom: 15px;
+}
+
+.panel-body {
+  padding: 10px;
+  *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+
+// Adding same style to ``span``s in nav that the ``a`` usually has.
+.navbar-nav > li > span {
+  color: #777;
+  padding: 15px 10px;
+  line-height: 20px;
+
+  a {
+    color: inherit;
+    text-decoration: inherit;
+  }
+}
+.nav > li > span {
+  position: relative;
+  display: block;
+}

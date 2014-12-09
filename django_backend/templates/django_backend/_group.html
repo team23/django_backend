@@ -1,0 +1,32 @@
+{% load django_backend_tags %}
+{% if group|backend_has_list_permission:user %}
+    <div class="block">
+        <h2>{{ group.name }}</h2>
+        <ul>
+            {% with active_backend=backend %}
+            {% for backend in group.backends %}
+                {% if backend|has_list_permission:user %}
+                <li class="{% if backend == active_backend %}active{% elif backend == active_backend.parent or backend == active_backend.parent.parent %}active-trail{% endif %}">
+                    <a href="{% backend_url backend.urlnames.views.index.name %}">{{ backend.verbose_name_plural }}</a>
+                    {% if backend == active_backend or backend == active_backend.parent or backend == active_backend.parent.parent %}
+                        {% if backend.groups and backend.groups|backend_has_list_permission:user %}
+                            <ul>
+                                {% for subgroup in backend.groups %}
+                                {% for subbackend in subgroup.backends %}
+                                    {% if subbackend|has_list_permission:user %}
+                                        <li class="{% if subbackend == active_backend or subbackend == active_backend.parent %}active{% endif %}">
+                                            <a href="{% backend_url subbackend.urlnames.views.index.name %}">{{ subbackend.verbose_name_plural }}</a>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endif %}
+                </li>
+                {% endif %}
+            {% endfor %}
+            {% endwith %}
+        </ul>
+    </div>
+{% endif %}

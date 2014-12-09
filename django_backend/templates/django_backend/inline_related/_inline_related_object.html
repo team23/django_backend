@@ -1,0 +1,20 @@
+{% load i18n django_backend_tags %}
+<div class="panel panel-default" data-id="{{ object.pk }}">
+    <div class="panel-body">
+        {% if not readonly %}
+            <div class="actions pull-right">
+                {% if backend|has_change_permission:user|for_object:object %}
+                <a href="{% backend_url backend.urlnames.views.update.name pk=object.pk %}" target="_blank" data-inline-related-update><span class="glyphicon glyphicon-pencil" title="{% trans "Edit" %}"></span></a>
+                {% endif %}
+                {% if backend|has_delete_permission:user|for_object:object %}
+                    &nbsp;&nbsp;<a href="{% backend_url backend.urlnames.views.delete.name pk=object.pk %}" target="_blank" data-inline-related-delete><span class="glyphicon glyphicon-trash" title="{% trans "Delete" %}"></span></a>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        <div class="preview">
+            {{ object|backend_preview:backend }}
+        </div>
+    </div>
+</div>
+

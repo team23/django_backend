@@ -1,0 +1,10 @@
+{% load floppyforms django_backend_tags %}
+
+<table class="table table-bordered table-striped">
+    {% for row in tab_rows %}
+        {% form form using %}{# needed to push the context for the formconfig #}
+            {% render row %}
+        {% endform %}
+    {% endfor %}
+</table>
+

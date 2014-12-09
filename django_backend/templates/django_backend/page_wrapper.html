@@ -1,0 +1,17 @@
+{% extends "django_backend/base_site.html" %}
+{% load i18n %}
+
+
+{% block title %}{% if title %}{{ title }}{% endif %}{% endblock %}
+
+
+{% block content %}
+    {% include template_name %}
+{% endblock %}
+
+
+{% block debug_footer %}
+<div class="pull-right">
+    <a href="{{ request.path }}" data-dialog="open">{% blocktrans %}open as dialog{% endblocktrans %}</a>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "django_backend/columns/_name.html" %}
+{% load i18n %}
+
+{% block name %}
+    {{ block.super }}
+    {% if backend.FEATURES.versionable %}
+        {% with main_branch=object.main_branch %}
+            {% if main_branch.slug != 'production' %}
+                <a href="{{ object.get_absolute_url }}?branch={{ main_branch.slug }}" target="_blank" class="glyphicon glyphicon-eye-open btn-xs" title="{% blocktrans %}Preview {{ main_branch }} online{% endblocktrans %}"></a>
+            {% endif %}
+        {% endwith %}
+    {% endif %}
+    <a href="{{ object.get_absolute_url }}" target="_blank" class="glyphicon glyphicon-new-window btn-xs" title="{% blocktrans %}View online{% endblocktrans %}"></a>
+{% endblock %}

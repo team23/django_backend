@@ -1,0 +1,14 @@
+{
+  "name": "django_backend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "modernizr": "~2.7.2",
+    "requirejs": "~2.1.11",
+    "stapes": "~0.8.1",
+    "jquery": "~2.1.0",
+    "jquery-ui": "~1.10.4",
+    "bootstrap-sass": "~3.0.2",
+    "bootstrap-tab-history": "~0.1.0"
+  }
+}

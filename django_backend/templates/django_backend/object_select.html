@@ -1,0 +1,58 @@
+{% extends "django_backend/base_dialog.html" %}
+{% load i18n django_backend_tags %}
+
+
+{% block content %}
+    {% block head %}
+        <div class="headline">
+            <span class="pull-right">
+                {% block head-buttons %}
+                    {% if backend|has_add_permission:user %}
+                        <a href="{% backend_url backend.urlnames.views.create.name %}" class="btn btn-default btn-sm">{% blocktrans with verbose_name=backend.verbose_name %}Add new {{ verbose_name }}{% endblocktrans %}</a>
+                    {% endif %}
+                {% endblock %}
+            </span>
+            <h1>{{ backend.verbose_name_plural }}</h1>
+        </div>
+    {% endblock %}
+
+    {% with inline=True %}
+        {% block content-filters %}
+            {% if filter_form %}
+                {% include "django_backend/_filter_form.html" with filter_form=filter_form %}
+            {% endif %}
+        {% endblock %}
+        {% block content-list %}
+            <form action="" method="post">{% csrf_token %}
+                {% if object_list %}
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                {% for column in backend.select_columns.values %}
+                                    <th>
+                                        {{ column.name }}
+                                    </th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for object in object_list %}
+                                <tr{% if backend.FEATURES.translatable and object.language != language_id %} class="untranslated"{% endif %}>
+                                    {% for column in backend.select_columns.values %}
+                                        <td>{% render column %}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% if page_obj.has_other_pages %}
+                        <hr />
+                        {% include "django_backend/paginator/paginator.html" %}
+                    {% endif %}
+                {% else %}
+                    <p>{% blocktrans with verbose_name_plural=backend.verbose_name_plural %}No {{ verbose_name_plural }} found.{% endblocktrans %}</p>
+                {% endif %}
+            </form>
+        {% endblock %}
+    {% endwith %}
+{% endblock %}
