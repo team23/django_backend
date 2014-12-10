@@ -1,0 +1,19 @@
+{% extends "django_backend/base_dialog.html" %}
+{% load django_backend_tags %}
+
+
+{% block content %}
+    <div class="headline">
+        <h1>You're logged in as "{{ user.get_full_name|default:user }}"</h1>
+    </div>
+    <p>
+        <strong>Username:</strong> {{ user.username }}<br />
+        {% if user.get_full_name %}<strong>Name:</strong> {{ user.get_full_name }}<br />{% endif %}
+        <strong>E-Mail:</strong> {{ user.email }}
+    </p>
+    <hr />
+    <div>
+        <p><a href="{% backend_url backend.urlnames.views.password_change.name %}"><small class="glyphicon glyphicon-chevron-right"></small> Change password</a><br />
+        <a href="{% url backend.base.urlnames.views.logout.name %}"><small class="glyphicon glyphicon-chevron-right"></small> Logout</a></p>
+    </div>
+{% endblock %}

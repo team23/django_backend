@@ -30,7 +30,10 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                      <li><span>{% blocktrans with user=user.get_full_name|default:user %}You're logged in as {{ user }}{% endblocktrans %} <a href="{% url backend.base.urlnames.views.logout.name %}">{% trans "(logout)" %}</a></span></li>
+                        {% if backend.base.inline_backends.administration %}
+                            {% backend_url backend.base.inline_backends.administration.urlnames.views.index.name as administration_url %}
+                        {% endif %}
+                        <li><span>{% blocktrans with user=user.get_full_name|default:user %}You're logged in as{% endblocktrans %} {% if administration_url %}<a href="{{ administration_url }}">{% endif %}{{ user }}{% if administration_url %}</a>{% endif %} <a href="{% url backend.base.urlnames.views.logout.name %}">{% trans "(logout)" %}</a></span></li>
 
                         {% block site-select %}
                             <li class="dropdown">
