@@ -2,7 +2,15 @@
 <div class="form-group{% if field.errors %} error{% endif %}">
     {% with classes=field.css_classes label=label|default:field.label help_text=help_text|default:field.help_text %}
     {% if not inline_label %}
-        {% block label %}{% if field|id %}<label for="{{ field|id }}">{% endif %}{{ label }}{% if label|last not in ".:!?" %}:{% endif %}{% if field|id %}</label>{% endif %}{% endblock %}
+        {% block label %}
+          {% if field|id %}<label for="{{ field|id }}">{% endif %}
+          {{ label }}
+          {% if label|last not in ".:!?" %}:{% endif %}
+          {% block help_text %}{% if field.help_text %}
+          <span data-content="{{ field.help_text }}" data-toggle="popover" data-trigger="hover" data-placement="top">(?)</span>
+          {% endif %}{% endblock %}
+          {% if field|id %}</label>{% endif %}
+        {% endblock %}
     {% endif %}
     {% block field %}
         <div class="field-content">
@@ -14,12 +22,10 @@
             {% endif %}
         {% endblock %}
         {% block errors %}{% include "floppyforms/errors.html" with errors=field.errors %}{% endblock %}
-        {% block help_text %}{% if field.help_text %}
-            <p class="help-block">{{ field.help_text }}</p>
-        {% endif %}{% endblock %}
         {% block hidden_fields %}{% for field in hidden_fields %}{{ field.as_hidden }}{% endfor %}{% endblock %}
         </div>
     {% endblock %}
     {% endwith %}
 </div><!--- .control-group{% if field.errors %}.error{% endif %} -->
 {% endfor %}{% endblock %}
+
