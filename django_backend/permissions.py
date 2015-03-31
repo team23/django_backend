@@ -94,6 +94,7 @@ class BaseModelBackendPermissions(object):
         for permission, check in self.get_object_permission_checks():
             django_callable_perms.register(permission, check, self.model)
         self.registered = True
+        return self
 
 
 class ModelBackendPermissions(BaseModelBackendPermissions):
