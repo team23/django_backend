@@ -40,6 +40,28 @@ class BaseModelBackendPermissions(object):
         def check_read_permission(self, user, perm, obj):
             return True
         check_read_permission.permission_name = 'my_app.access_model'
+
+    And here is how you would define your own checks::
+
+        class SupportPermissions(BaseModelBackendPermissions):
+            def check_read_permission(self, user, perm, obj):
+                # We cannot allow generic read permissions, we need to know
+                # about the object.
+                return False
+
+            def check_read_object_permission(self, user, perm, obj):
+                # Give support user access based on how much we trust them and
+                # how confidential the information is.
+                if obj.is_confidential:
+                    if user.is_trustworthy:
+                        return True
+                    else:
+                        return False
+                return True
+
+    And then use the permissions::
+
+        support_permissions = SupportPermissions(Ticket).register()
     """
 
     def __init__(self, model):
