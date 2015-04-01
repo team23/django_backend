@@ -122,34 +122,57 @@ class BaseModelBackendPermissions(object):
 class ModelBackendPermissions(BaseModelBackendPermissions):
     """
     Default permissions that need to exist in order to use the backend.
+
+    We mainly fallback to django's default permission names, namely ``add``,
+    ``change`` and ``delete``. In order to use this class directly, you will
+    probably want to set the your ``AUTHENTICATION_BACKENDS`` setting to::
+
+        AUTHENTICATION_BACKENDS = (
+            'django_callable_perms.backends.CallablePermissionBackend',
+            'django.contrib.auth.backends.ModelBackend',
+        )
     """
 
     def check_list_permission(self, user, perm, obj):
-        return user.has_perm('auth.editor_permission')
+        """Falls back to default ``change`` permission."""
+        return user.has_perm(self.get_permission_name('change'))
 
     def check_viewlog_permission(self, user, perm, obj):
-        return user.has_perm('auth.editor_permission')
+        """Falls back to default ``change`` permission."""
+        return user.has_perm(self.get_permission_name('change'))
 
     def check_read_permission(self, user, perm, obj):
-        return user.has_perm('auth.editor_permission')
+        """Falls back to default ``change`` permission."""
+        return user.has_perm(self.get_permission_name('change'))
 
     def check_read_object_permission(self, user, perm, obj):
+        """Falls back to the non-object level ``read`` permission."""
         return self.check_read_permission(user, perm, obj)
 
     def check_add_permission(self, user, perm, obj):
-        return user.has_perm('auth.editor_permission')
+        """No custom logic, so we depend on other auth-backends to be present
+        in ``settings.AUTHENTICATION_BACKENDS``."""
+        return None
 
     def check_change_permission(self, user, perm, obj):
-        return user.has_perm('auth.editor_permission')
+        """No custom logic, so we depend on other auth-backends to be present
+        in ``settings.AUTHENTICATION_BACKENDS``."""
+        return None
 
     def check_change_object_permission(self, user, perm, obj):
-        return self.check_change_permission(user, perm, obj)
+        """Support object level checks by falling back to the non-object level
+        check."""
+        return user.has_perm(self.get_permission_name('change'))
 
     def check_delete_permission(self, user, perm, obj):
-        return user.has_perm('auth.editor_permission')
+        """No custom logic, so we depend on other auth-backends to be present
+        in ``settings.AUTHENTICATION_BACKENDS``."""
+        return None
 
     def check_delete_object_permission(self, user, perm, obj):
-        return self.check_delete_permission(user, perm, obj)
+        """Support object level checks by falling back to the non-object level
+        check."""
+        return user.has_perm(self.get_permission_name('delete'))
 
 
 #
@@ -157,10 +180,9 @@ class ModelBackendPermissions(BaseModelBackendPermissions):
 
 
 def may_access_backend(user, perm, obj):
-    return user.has_perm('auth.editor_permission')
+    return user.is_staff
 
 
 register(
     'django_backend.access_backend',
     may_access_backend)
-

@@ -1,3 +1,4 @@
+django_callable_perms
 argparse
 coverage
 django-discover-runner

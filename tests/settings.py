@@ -12,14 +12,22 @@ USE_L10N = True
 
 INSTALLED_APPS = [
     'django_backend',
+    'django_callable_perms',
     'django_localstate',
     'django_superform',
     'django_viewset',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
     'floppyforms',
     'tests',
 ]
 
 MIDDLEWARE_CLASSES = ()
+
+AUTHENTICATION_BACKENDS = (
+    'django_callable_perms.backends.CallablePermissionBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 STATIC_URL = '/static/'
 
