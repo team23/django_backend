@@ -37,7 +37,6 @@ setup(
         'django-floppyforms',
         'django-superform',
         # These don't have pypi releases yet.
-        #'django-localstate',
         #'django-viewset',
 
         # Optional dependencies:

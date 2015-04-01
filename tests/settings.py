@@ -13,7 +13,6 @@ USE_L10N = True
 INSTALLED_APPS = [
     'django_backend',
     'django_callable_perms',
-    'django_localstate',
     'django_superform',
     'django_viewset',
     'django.contrib.auth',

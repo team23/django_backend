@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
 
-from django_localstate import LocalState
+from .localstate import LocalState
 
 
 # the language state is separate to the global translation, as we want the backend to be translated separately
