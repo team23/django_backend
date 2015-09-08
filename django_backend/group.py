@@ -3,6 +3,11 @@ from django.template.loader import render_to_string
 
 
 class Group(list):
+    """
+    A simplistic representation of backends that are related and should be
+    displayed as one "group" in the backend (e.g. as one box in the sidebar).
+    """
+
     template_name = 'django_backend/_group.html'
 
     def __init__(self, id, name=None, position=0, template_name=None):
