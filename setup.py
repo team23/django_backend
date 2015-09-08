@@ -36,8 +36,7 @@ setup(
     install_requires=[
         'django-floppyforms',
         'django-superform',
-        # These don't have pypi releases yet.
-        #'django-viewset',
+        'django-viewset',
 
         # Optional dependencies:
         #
