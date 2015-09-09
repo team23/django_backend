@@ -58,6 +58,9 @@ class BaseBackendForm(SuperModelForm, forms.ModelForm):
 
     __metaclass__ = BackendFormMetaclass
 
+    class Meta:
+        exclude = ()
+
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
         super(BaseBackendForm, self).__init__(*args, **kwargs)
