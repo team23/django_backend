@@ -83,7 +83,7 @@ class DialogResponseMixin(JsonResponseMixin):
     def render_html_response(self, context, **response_kwargs):
         response_kwargs.setdefault('content_type', self.content_type)
         template = select_template(self.get_template_names())
-        context['template_name'] = template.name
+        context['template_name'] = template.template.name
         return self.response_class(
             request=self.request,
             template=self.get_page_wrapper_template_names(),
