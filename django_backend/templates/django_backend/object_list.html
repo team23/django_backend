@@ -33,7 +33,7 @@
                 <thead>
                     <tr>
                         {% if action_form %}
-                            <th>
+                            <th class="action-checkbox">
                                 <input type="checkbox" data-select-all=".action-checkbox">
                             </th>
                         {% endif %}
@@ -54,7 +54,7 @@
                     {% for object in object_list %}
                         <tr{% if backend.FEATURES.translatable and object.language != language_id %} class="untranslated"{% endif %}>
                             {% if action_form %}
-                                <td>
+                                <td class="action-checkbox">
                                     <input type="checkbox" class="action-checkbox" name="{{ action_form.objects.name }}" value="{{ object.pk }}">
                                 </td>
                             {% endif %}

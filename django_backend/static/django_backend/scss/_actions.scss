@@ -1,12 +1,22 @@
 .action-form {
   opacity: 0.8;
-  margin-bottom: 35px;
-  border: 1px solid #ccc;
-  background-color: #ddd;
-  padding: 8px 15px;
+  border-top: 2px solid #ccc;
+  border-bottom: 2px solid #ccc;
+  padding: 8px 0;
 
+  label {
+    display: none;
+  }
   .form-control {
     width: auto;
   }
 
+}
+
+table {
+  th, td {
+    &.action-checkbox {
+      width: 25px;
+    }
+  }
 }
