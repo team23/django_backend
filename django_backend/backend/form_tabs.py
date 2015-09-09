@@ -184,11 +184,16 @@ class FormField(BaseFormElement):
             return bool(field.errors)
         return False
 
+    def resolve_form(self, context):
+        if 'form' in context:
+            return context['form']
+
     def resolve_field(self, context):
-        if 'form' not in context:
+        form = self.resolve_form(context)
+        if form is None:
             return  # we need the form to exists
         try:
-            return context['form'][self.field]
+            return form[self.field]
         except KeyError:
             return
 
