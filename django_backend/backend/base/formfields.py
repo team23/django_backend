@@ -56,4 +56,5 @@ class InlineFormSetField(CopyOnTranslateInlineFormSetFieldMixin, _InlineFormSetF
         # Use backend base infline form set. This contains some hooks we need.
         kwargs.setdefault('formset', BaseBackendInlineFormSet)
         kwargs.setdefault('extra', 0)
+        kwargs.setdefault('exclude', ())
         super(InlineFormSetField, self).__init__(*args, **kwargs)
