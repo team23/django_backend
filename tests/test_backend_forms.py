@@ -28,4 +28,4 @@ class BaseBackendFormTests(TestCase):
     def test_model_field_is_using_floppyforms_widget(self):
         form = OneFieldForm()
         self.assertTrue(
-            isinstance(form.fields['name'].widget, floppyforms.TextInput))
+            isinstance(form.fields['chars'].widget, floppyforms.TextInput))

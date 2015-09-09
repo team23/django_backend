@@ -29,4 +29,4 @@ class ModelBackendTest(TestCase):
         form_class = backend.get_form_class()
 
         self.assertEqual(form_class.Meta.model, OneFieldModel)
-        self.assertEqual(form_class.base_fields.keys(), ['name'])
+        self.assertEqual(form_class.base_fields.keys(), ['chars'])

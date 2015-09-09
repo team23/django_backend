@@ -6,4 +6,4 @@ class PermissionTestModel(models.Model):
 
 
 class OneFieldModel(models.Model):
-    name = models.CharField(max_length=50)
+    chars = models.CharField(max_length=50)
