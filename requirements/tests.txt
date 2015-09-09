@@ -1,5 +1,5 @@
-django_callable_perms
+django-callable-perms == 0.1.2
 argparse
-coverage
-django-discover-runner
+coverage == 3.7.1
+django-discover-runner == 1.0
 tox >= 1.8
