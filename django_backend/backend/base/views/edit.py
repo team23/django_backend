@@ -76,7 +76,7 @@ class BackendFormViewMixin(BackendDismissViewMixin):
         initial.update(self.backend.get_form_initial(self.object))
         return initial
 
-    def get_form(self, form_class):
+    def get_form(self, form_class=None):
         self.form = super(BackendFormViewMixin, self).get_form(form_class)
         self.form_tabs = self.get_form_tabs()
         return self.form
