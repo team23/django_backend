@@ -11,7 +11,7 @@ backend_js = Bundle(
     'django_backend/js/jquery.django-csrf.js',
 
     # Bootstrap
-    'django_backend/libs/bootstrap-sass/dist/js/bootstrap.min.js',
+    'django_backend/libs/bootstrap-sass/assets/javascripts/bootstrap.min.js',
     'django_backend/libs/bootstrap-tab-history/vendor/assets/javascripts/bootstrap-tab-history.js',
 
     # Stapes
