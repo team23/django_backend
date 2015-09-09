@@ -65,7 +65,7 @@ class BackendListView(ActionFormMixin, BackendModelViewMixin, ListView):
     def get_sort_form_class(self):
         return self.backend.get_sort_form_class()
 
-    def get_sort_form(self):
+    def get_sort_form(self, list_columns=None):
         sort_form_class = self.get_sort_form_class()
         if sort_form_class is None:
             return
@@ -75,9 +75,11 @@ class BackendListView(ActionFormMixin, BackendModelViewMixin, ListView):
         }
         if 'order_by' in self.request.GET:
             sort_form_data['order_by'] = self.request.GET['order_by']
+        if list_columns is None:
+            list_columns = self.backend.list_columns
         return sort_form_class(
             sort_form_data,
-            list_columns=self.backend.list_columns)
+            list_columns=list_columns)
 
     def get_context_data(self, **kwargs):
         kwargs['filter_form'] = self.filter_form
