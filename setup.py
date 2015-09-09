@@ -34,6 +34,7 @@ setup(
         read('README.rst'),
         read('CHANGES.rst'))),
     install_requires=[
+        'django_ajax',
         'django-floppyforms',
         'django-superform',
         'django-viewset',
