@@ -34,15 +34,18 @@ setup(
         read('README.rst'),
         read('CHANGES.rst'))),
     install_requires=[
+        'cssmin',
         'django_ajax',
+        'django-assets',
         'django-floppyforms',
         'django-superform',
         'django-viewset',
+        'jsmin',
+        'webassets',
 
         # Optional dependencies:
         #
         # * django-callable-perms
-        # * django-assets
     ],
     classifiers=[
         'Development Status :: 3 - Alpha',

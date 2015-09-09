@@ -5,17 +5,3 @@ django-discover-runner == 1.0
 django-dynamic-fixture == 1.8.5
 mock == 1.3.0
 tox >= 1.8
-
-#
-# Webassets and related
-#
-
-webassets == 0.10.1
-jsmin == 2.1.1
-cssmin == 0.2.0
-
-# django-assets
-# The latest version is required for Django 1.8 support.
-# However AppConfig support is not their yet. So we cannot use custom app
-# configs in INSTALLED_APPS.
-https://github.com/miracle2k/django-assets/archive/b7e2a731b467bbfad305a077ff942560b06f3491.zip#egg=django-assets
