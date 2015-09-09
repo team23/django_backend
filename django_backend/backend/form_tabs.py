@@ -47,6 +47,8 @@ class FormTab(BaseFormElement):
 
     def add_row(self, row):
         self._rows.append(self._initialize_row(row))
+        # Make calls chainable.
+        return self
 
     def _initialize_row(self, row):
         if isinstance(row, dict):
@@ -104,6 +106,8 @@ class FormRow(BaseFormElement):
 
     def add_field(self, field):
         self._fields.append(self._initialize_field(field))
+        # Make calls chainable.
+        return self
 
     def _initialize_field(self, field):
         if isinstance(field, basestring):
