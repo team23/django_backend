@@ -15,14 +15,23 @@ USE_L10N = True
 
 INSTALLED_APPS = [
     'django_backend',
+    'django_ajax',
+    'django_assets',
     'django_callable_perms',
     'django_superform',
     'django_viewset',
     'django.contrib.auth',
     'django.contrib.contenttypes',
+    'django.contrib.staticfiles',
+    'django.contrib.sites',
     'floppyforms',
     'tests',
 ]
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'django_assets.finders.AssetsFinder',
+)
 
 MIDDLEWARE_CLASSES = ()
 
