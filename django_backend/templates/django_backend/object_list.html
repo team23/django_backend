@@ -66,9 +66,6 @@
                 </tbody>
             </table>
             <div class="object-list-footer">
-                {% if page_obj.has_other_pages %}
-                    {% include "django_backend/paginator/paginator.html" %}
-                {% endif %}
                 {% if action_form %}
                     <div class="action-form form-inline">
                         {% form action_form using %}
@@ -76,6 +73,9 @@
                             <button class="btn btn-default btn-md" type="submit">{% blocktrans %}Go{% endblocktrans %}</button>
                         {% endform %}
                     </div>
+                {% endif %}
+                {% if page_obj.has_other_pages %}
+                    {% include "django_backend/paginator/paginator.html" %}
                 {% endif %}
             </div>
             {% if action_form %}
