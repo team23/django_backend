@@ -23,7 +23,7 @@ class JsonResponseMixin(object):
             cls=self.json_encoder_class)
         json_serialized = json_serialized.encode('utf-8')
         return HttpResponse(json_serialized,
-                            content_type='application/json',
+                            content_type='application/json; charset=utf-8',
                             **response_kwargs)
 
 
