@@ -286,7 +286,7 @@ class BaseModelBackend(ModelViewSet, BaseBackend):
         # Most of this code is ripped of
         # ``django.contrib.admin.util.get_deleted_objects`` with some changes
         # to better integrate it with django_backend.
-        from django.contrib.admin.utils import NestedObjects
+        from django_backend.compat import NestedObjects
 
         using = 'default'
 
