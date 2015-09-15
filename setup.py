@@ -25,7 +25,8 @@ setup(
     version=find_version('django_backend', '__init__.py'),
     author=u'David Danier',
     author_email='david.danier@team23.de',
-    packages=find_packages('django_backend/*'),
+    packages=find_packages(
+        exclude=['examples', 'examples.*', 'tests', 'tests.*']),
     include_package_data=True,
     url='https://github.com/team23/django-backend',
     license='BSD licence, see LICENSE file',
