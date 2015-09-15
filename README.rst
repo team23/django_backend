@@ -40,7 +40,7 @@ Run tests
 .. code-block:: bash
 
     # Set everything up. You want to do this in a virtualenv.
-    pip install -r requirements/tests.txt
+    pip install -r tests/requirements.txt
     python setup.py develop
 
     # Run the tests. Should be executed in the root of the project.
