@@ -28,3 +28,18 @@ Add the following line to your ``urls.py``:
     url(r'^backend/', include(django_backend.site.get_urls(), namespace='django_backend')),
 
 TODO: continue, propably not complete yet
+
+Development
+===========
+
+Run tests
+---------
+
+.. code-block:: bash
+
+    # Set everything up. You want to do this in a virtualenv.
+    pip install -r requirements/tests.txt
+    python setup.py develop
+
+    # Run the tests. Should be executed in the root of the project.
+    py.test
