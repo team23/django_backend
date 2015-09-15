@@ -2,6 +2,8 @@
 django-backend
 ==============
 
+|build-status|
+
 Installation
 ============
 
@@ -43,3 +45,6 @@ Run tests
 
     # Run the tests. Should be executed in the root of the project.
     py.test
+
+.. |build-status| image:: https://travis-ci.org/team23/django_backend.svg
+    :target: https://travis-ci.org/team23/django_backend
