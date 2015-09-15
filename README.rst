@@ -21,9 +21,9 @@ Add the following apps to your ``INSTALLED_APPS`` settings:
         'floppyforms',
     )
 
- Add the following line to your ``urls.py``:
+Add the following line to your ``urls.py``:
 
- .. code-block:: python
+.. code-block:: python
 
     url(r'^backend/', include(django_backend.site.get_urls(), namespace='django_backend')),
 
