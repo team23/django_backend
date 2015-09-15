@@ -37,12 +37,12 @@ setup(
     install_requires=[
         'cssmin',
         'django_ajax',
-        'django-assets',
+        'django-assets==0.11',
         'django-floppyforms',
         'django-superform',
         'django-viewset',
         'jsmin',
-        'webassets',
+        'webassets==0.11',
 
         # Optional dependencies:
         #
