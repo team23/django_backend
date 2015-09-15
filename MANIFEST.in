@@ -1,5 +1,6 @@
 include README.rst
 include CHANGES.rst
+recursive-include django_backend/static *
 recursive-include django_backend/templates *.html
 recursive-include tests *.py *.html
 recursive-include requirements *.txt
