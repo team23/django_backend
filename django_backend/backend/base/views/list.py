@@ -86,6 +86,14 @@ class BackendListView(ActionFormMixin, BackendModelViewMixin, ListView):
         kwargs['sort_form'] = self.sort_form
         return super(BackendListView, self).get_context_data(**kwargs)
 
+    def get_list_preview(self, queryset):
+        return self.backend.get_list_preview(queryset)
+
+    def get_json(self, **kwargs):
+        json_data = super(BackendListView, self).get_json(**kwargs)
+        json_data['preview'] = self.get_list_preview(self.get_queryset())
+        return json_data
+
     def get_queryset(self):
         queryset = super(BackendListView, self).get_queryset()
 

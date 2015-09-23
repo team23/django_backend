@@ -336,8 +336,6 @@ class BaseModelBackend(ModelViewSet, BaseBackend):
             formfield_callback=formfield_callback)
 
     def get_preview(self, object):
-        # TODO: Use Renderable for preview like we do with
-        # ``inline_related_object``.
         from django.utils import translation
 
         with translation.override(self.language.active):
