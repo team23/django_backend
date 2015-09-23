@@ -39,8 +39,7 @@
 
                 {% block read_update_button %}
                     <div class="pull-right">
-                        {# Do not show if it's a dialog or if it's a create view #}
-                        {% if not is_dialog and not create %}
+                        {% if not create %}
                             {% if backend|has_delete_permission:user|for_object:object %}
                                 <a href="{% backend_url backend.urlnames.views.delete.name pk=object.pk %}{% if request.GET.revision %}?revision={{ request.GET.revision }}{% endif %}" class="btn btn-danger">{% trans "delete" %}</a>
                             {% endif %}
