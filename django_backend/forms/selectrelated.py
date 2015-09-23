@@ -2,7 +2,7 @@ import floppyforms.__future__ as forms
 from django.core.validators import EMPTY_VALUES
 
 
-__all__ = ('SelectRelatedWidget',)
+__all__ = ('SelectRelatedField', 'SelectRelatedWidget',)
 
 
 class SelectRelatedWidget(forms.TextInput):
@@ -42,3 +42,22 @@ class SelectRelatedWidget(forms.TextInput):
             except queryset.model.DoesNotExist:
                 pass
         return context
+
+
+class SelectRelatedField(forms.ModelChoiceField):
+    inline_widget_class = SelectRelatedWidget
+
+    def get_inline_backend(self):
+        from django_backend import site
+        model = self.queryset.model
+        inline_backend = site.find(model=model, registry='inline')
+        return inline_backend
+
+    def __init__(self, *args, **kwargs):
+        super(SelectRelatedField, self).__init__(*args, **kwargs)
+        try:
+            self.widget = self.inline_widget_class(
+                field=self,
+                inline_backend=self.get_inline_backend())
+        except ValueError:
+            pass

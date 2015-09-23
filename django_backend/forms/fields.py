@@ -1,32 +1,10 @@
-import floppyforms.__future__ as forms
 from django_superform import FormSetWidget as _FormSetWidget
 from django_superform import InlineFormSetField as _InlineFormSetField
 
-from .widgets import SelectRelatedWidget
-
 
 __all__ = (
-    'SelectRelatedField', 'InlineFormSetWidget',
-    'CopyOnTranslateInlineFormSetFieldMixin', 'InlineFormSetField',)
-
-
-class SelectRelatedField(forms.ModelChoiceField):
-    inline_widget_class = SelectRelatedWidget
-
-    def get_inline_backend(self):
-        from django_backend import site
-        model = self.queryset.model
-        inline_backend = site.find(model=model, registry='inline')
-        return inline_backend
-
-    def __init__(self, *args, **kwargs):
-        super(SelectRelatedField, self).__init__(*args, **kwargs)
-        try:
-            self.widget = self.inline_widget_class(
-                field=self,
-                inline_backend=self.get_inline_backend())
-        except ValueError:
-            pass
+    'InlineFormSetWidget', 'CopyOnTranslateInlineFormSetFieldMixin',
+    'InlineFormSetField',)
 
 
 class InlineFormSetWidget(_FormSetWidget):

@@ -8,7 +8,7 @@ from floppyforms.__future__.models import formfield_callback as floppyforms_form
 from floppyforms.__future__.models import ModelFormMetaclass as FloppyformsModelFormMetaclass
 import floppyforms.__future__ as forms
 
-from .fields import SelectRelatedField
+from .selectrelated import SelectRelatedField
 
 
 __all__ = (
