@@ -1,4 +1,7 @@
 {% load i18n floppyforms %}
+
+{# Don't show the filter form if all fields are hidden. In that case we assume its only used in non-interactive ways. #}
+{% if filter_form.visible_fields %}
 {% comment %}<div class="filter-form inline-label {% if filter_form.changed_data %}toggled-expanded{% else %}toggled-compressed{% endif %}">
     <div class="legend filter-form-toggler">{% trans "Filter " %}&nbsp;&nbsp;<span class="glyphicon glyphicon-chevron-down"></span>&nbsp;</div>
     <div class="toggled-content">
@@ -25,3 +28,4 @@
         </div>
     </div>
 </form>
+{% endif %}
