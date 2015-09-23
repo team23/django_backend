@@ -1,0 +1,12 @@
+/*
+ * The ".ui-widget-content a" from jquery ui overwrites the bootstrap color
+ * for the buttons.
+ */
+
+.ui-widget-content a.btn { color: $btn-default-color; }
+.ui-widget-content a.btn-default { color: $btn-default-color; }
+.ui-widget-content a.btn-primary { color: $btn-primary-color; }
+.ui-widget-content a.btn-success { color: $btn-success-color; }
+.ui-widget-content a.btn-info { color: $btn-info-color; }
+.ui-widget-content a.btn-warning { color: $btn-warning-color; }
+.ui-widget-content a.btn-danger { color: $btn-danger-color;}
