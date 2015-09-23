@@ -8,6 +8,7 @@ define(
       'django_backend.filterform',
       'django_backend.formset',
       'django_backend.inlinerelated',
+      'django_backend.managerelated',
       'django_backend.selectrelated',
       'django_backend.opendialog'
     ], function (
@@ -18,6 +19,7 @@ define(
       FilterForm,
       FormSet,
       InlineRelated,
+      ManageRelated,
       SelectRelated,
       opendialog) {
 
@@ -75,6 +77,14 @@ define(
           pageContext: self
         });
         inlineRelated.init();
+      });
+
+      // Initialize select related fields.
+      this.$element.find('.manage-related-field').each(function () {
+        var manageRelated = new ManageRelated(this, {
+          pageContext: self
+        });
+        manageRelated.init();
       });
 
       // Initialize select related fields.

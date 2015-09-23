@@ -71,6 +71,12 @@ class BaseBackendForm(SuperModelForm, forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request', None)
         super(BaseBackendForm, self).__init__(*args, **kwargs)
+        self.bind_widgets()
+
+    def bind_widgets(self):
+        for field in self.fields.values():
+            if hasattr(field.widget, 'bind_to_form'):
+                field.widget.bind_to_form(self)
 
     @property
     def extra_fields(self):
