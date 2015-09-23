@@ -71,9 +71,7 @@ class BackendModelViewMixin(
         return super(BackendModelViewMixin, self).get_context_data(**kwargs)
 
     def get_preview(self, object):
-        return self.backend.preview.render({
-            'object': object,
-        })
+        return self.backend.get_preview(object)
 
     def get_inline_related_object_preview(self, object):
         return self.backend.inline_related_object.render({
