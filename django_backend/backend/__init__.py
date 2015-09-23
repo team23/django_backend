@@ -8,12 +8,12 @@ from django.utils.translation import ugettext_lazy as _
 from django_viewset import ViewSet, ModelViewSet
 from floppyforms.__future__.models import ModelForm, modelform_factory
 
+from ..forms import formfield_callback
 from ..group import Group
 from .preview import Preview
 from .inline_related import InlineRelatedObject
 from .columns import BackendColumn
 from .forms import ActionForm, SortForm
-from .base.forms import formfield_callback
 from .urlname_helper import URLNames
 from .utils import TemplateHintProvider
 

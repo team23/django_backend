@@ -1,7 +1,7 @@
 from django_viewset import URLView
 
+from django_backend.forms import BaseBackendForm
 from .. import BaseModelBackend
-from .forms import BaseBackendForm
 from .views import *
 
 

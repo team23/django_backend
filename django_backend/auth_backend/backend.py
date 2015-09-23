@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 import floppyforms.__future__ as forms
 
 from ..backend.base.backends import ModelBackend
-from ..backend.base.forms import BaseBackendForm, BaseFilterForm
+from ..forms import BaseBackendForm, BaseFilterForm
 from .. import site
 
 

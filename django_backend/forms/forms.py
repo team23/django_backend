@@ -8,7 +8,14 @@ from floppyforms.__future__.models import formfield_callback as floppyforms_form
 from floppyforms.__future__.models import ModelFormMetaclass as FloppyformsModelFormMetaclass
 import floppyforms.__future__ as forms
 
-from django_backend.forms import SelectRelatedField
+from .fields import SelectRelatedField
+
+
+__all__ = (
+    'FORMFIELD_OVERRIDES', 'FORMFIELD_OVERRIDE_DEFAULTS',
+    'add_formfield_override', 'formfield_callback', 'BackendFormMetaclass',
+    'BaseBackendForm', 'BaseFilterForm', 'CopyOnTranslateInlineFormSetMixin',
+    'BaseBackendInlineFormSet')
 
 
 FORMFIELD_OVERRIDES = {
