@@ -5,6 +5,11 @@ from django_superform import InlineFormSetField as _InlineFormSetField
 from .widgets import SelectRelatedWidget
 
 
+__all__ = (
+    'SelectRelatedField', 'InlineFormSetWidget',
+    'CopyOnTranslateInlineFormSetFieldMixin', 'InlineFormSetField',)
+
+
 class SelectRelatedField(forms.ModelChoiceField):
     inline_widget_class = SelectRelatedWidget
 

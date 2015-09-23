@@ -8,7 +8,7 @@ from floppyforms.__future__.models import formfield_callback as floppyforms_form
 from floppyforms.__future__.models import ModelFormMetaclass as FloppyformsModelFormMetaclass
 import floppyforms.__future__ as forms
 
-from .formfields import SelectRelatedField
+from django_backend.forms import SelectRelatedField
 
 
 FORMFIELD_OVERRIDES = {

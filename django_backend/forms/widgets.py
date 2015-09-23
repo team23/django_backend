@@ -2,6 +2,9 @@ import floppyforms.__future__ as forms
 from django.core.validators import EMPTY_VALUES
 
 
+__all__ = ('SelectRelatedWidget',)
+
+
 class SelectRelatedWidget(forms.TextInput):
     is_hidden = False
     type = 'hidden'
