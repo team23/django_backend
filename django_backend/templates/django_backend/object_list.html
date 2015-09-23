@@ -13,7 +13,8 @@
                 {% endfor %}
             {% endif %}
             {% if backend|has_add_permission:user %}
-                <a href="{% backend_url backend.urlnames.views.create.name %}" class="btn btn-default btn-sm">{% blocktrans with verbose_name=backend.verbose_name %}Add new {{ verbose_name }}{% endblocktrans %}</a>
+                {% query_string extends request.GET as query_params %}
+                <a href="{% backend_url backend.urlnames.views.create.name %}{% if query_params %}?{{ query_params }}{% endif %}" class="btn btn-default btn-sm">{% blocktrans with verbose_name=backend.verbose_name %}Add new {{ verbose_name }}{% endblocktrans %}</a>
             {% endif %}
         </div>
         <h1>{{ backend.verbose_name_plural }}</h1>
