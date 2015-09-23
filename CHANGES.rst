@@ -12,6 +12,8 @@
     # NEW import
     from django_backend.forms import SelectRelatedField
 
+* Add ``ManageRelatedField``.
+
 0.1.0
 -----
 
