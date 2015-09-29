@@ -118,12 +118,6 @@ define(
 
     prepareUrl: function (url) {
       var params = {};
-      if (this.options.lock) {
-        params.lock = this.options.lock;
-      }
-      if (this.options.objectLock) {
-        params.object_lock = this.options.objectLock;
-      }
       if (params) {
         if (url.match(/\?/))
           url = url + '&' + $.param(params);

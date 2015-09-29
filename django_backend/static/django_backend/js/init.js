@@ -14,10 +14,7 @@ require(
 
     // Initialize root page context.
     var $pageContent = $('.container');
-    var pageContext = new PageContext(undefined, {
-      lock: CONFIG.lock,
-      objectLock: CONFIG.objectLock
-    });
+    var pageContext = new PageContext(undefined, {});
 
     pageContext.init($pageContent);
 

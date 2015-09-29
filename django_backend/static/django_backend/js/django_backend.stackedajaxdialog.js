@@ -16,12 +16,6 @@ define(
     handleResponse: function (data) {
       StackedAjaxDialog.parent.handleResponse.call(this, data);
       var contextOptions = {};
-      if (data.lock) {
-        contextOptions.lock = data.lock;
-      }
-      if (data.object_lock) {
-        contextOptions.objectLock = data.object_lock;
-      }
       var parentPageContext = this.options.parentPageContext;
       this.pageContext = parentPageContext.inherit(contextOptions);
     },
