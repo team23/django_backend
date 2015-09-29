@@ -16,7 +16,6 @@ USE_L10N = True
 INSTALLED_APPS = [
     'django_backend',
     'django_ajax',
-    'django_assets',
     'django_callable_perms',
     'django_superform',
     'django_viewset',
@@ -30,7 +29,6 @@ INSTALLED_APPS = [
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'django_assets.finders.AssetsFinder',
 )
 
 MIDDLEWARE_CLASSES = ()
