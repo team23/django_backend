@@ -48,7 +48,7 @@ var config = {
             'django_backend/static/django_backend/js/init.js',
         ],
         watch: [
-            'django_backend/static/django_bacend/js/**/*.js',
+            'django_backend/static/django_backend/js/**/*.js',
         ]
     },
     sass: {
@@ -68,7 +68,7 @@ gulp.task('js', function () {
     return gulp.src(config.js.src)
         .pipe(gulpif(config.dev, sourcemaps.init()))
         .pipe(concat('django_backend.js'))
-        .pipe(uglify())
+        .pipe(gulpif(!config.dev, uglify()))
         .pipe(gulpif(config.dev, sourcemaps.write()))
         .pipe(gulp.dest('django_backend/static/django_backend/dist/'));
 });
@@ -82,9 +82,10 @@ gulp.task('js:watch', ['js'], function () {
 gulp.task('sass', function () {
     return gulp.src(config.sass.src)
         .pipe(gulpif(config.dev, sourcemaps.init()))
-        .pipe(sass({
+        .pipe(gulpif(!config.dev, sass({
             outputStyle: 'compressed',
-        }).on('error', sass.logError))
+        }).on('error', sass.logError)))
+        .pipe(gulpif(config.dev, sass({}).on('error', sass.logError)))
         .pipe(gulpif(config.dev, sourcemaps.write()))
         .pipe(gulp.dest('django_backend/static/django_backend/dist/'));
 });
