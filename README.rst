@@ -48,3 +48,20 @@ Run tests
 
 .. |build-status| image:: https://travis-ci.org/team23/django_backend.svg
     :target: https://travis-ci.org/team23/django_backend
+
+Build static assets
+-------------------
+
+.. code-block:: bash
+
+    npm install
+    gulp build
+
+    # Use gulp watch to continuously build on source file changes.
+    gulp watch
+
+Or to create a development build that includes source maps, execute the ``dev`` task first, like:
+
+.. code-block:: bash
+
+    gulp dev build
