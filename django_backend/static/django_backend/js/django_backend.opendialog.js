@@ -2,8 +2,8 @@ define(
     'django_backend.opendialog',
     [
       'jquery',
-      'django_backend.stackedajaxdialog'
-    ], function ($, StackedAjaxDialog) {
+      'django_backend.ajaxdialog'
+    ], function ($, AjaxDialog) {
 
   "use strict";
 
@@ -11,7 +11,7 @@ define(
     init: function (pageContext) {
       pageContext.$element.on('click', '[data-dialog=open]', function (e) {
 
-        var dialog = new StackedAjaxDialog(this, {
+        var dialog = new AjaxDialog(this, {
           url: $(this).attr('href'),
           width: 880,  // dialog width should be similar to normal content width content area
           height: Math.min(800, $(window).height() - 150),

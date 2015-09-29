@@ -1,4 +1,4 @@
-define('django_backend.dialog', ['jquery', 'stapes', 'django_backend.widget'], function ($, Stapes, Widget, undefined) {
+define('django_backend.dialog', ['jquery', 'stapes', 'django_backend.widget', 'django_backend.partialcontentloader'], function ($, Stapes, Widget, PartialContentLoader, undefined) {
   "use strict";
 
   /**
@@ -40,24 +40,23 @@ define('django_backend.dialog', ['jquery', 'stapes', 'django_backend.widget'], f
      *   $content.filter('form').add($content.find('form'));
      *
      */
-    prepareContent: function (content) {
-      return $('<div class="dialog-content" />').html(content);
+    prepareContent: function ($content) {
+      $content = $('<div class="dialog-content" />').append($content);
+      return $content
     },
 
-    prepareDialog: function (title, content) {
+    prepareDialog: function (title, $content) {
       this.$dialog.attr('title', title);
 
-      var $content = this.prepareContent(content);
       this.$dialog.empty();
       this.$dialog.append($content);
-
-      this.emit('load');
     },
 
-    create: function (title, content) {
+    create: function (title, $content) {
       var self = this;
 
-      this.prepareDialog(title, content);
+      this.prepareDialog(title, $content);
+      this.emit('load');
 
       var body_width = $('body').width();
       this.dialog_width = body_width*0.9;
@@ -153,9 +152,10 @@ define('django_backend.dialog', ['jquery', 'stapes', 'django_backend.widget'], f
     },
 
     open: function () {
+      var $content = this.initContent(this.options.content);
       this.create(
         this.options.title,
-        this.options.content);
+        $content);
       this.emit('open');
     },
 
@@ -164,6 +164,8 @@ define('django_backend.dialog', ['jquery', 'stapes', 'django_backend.widget'], f
       this.emit('close');
     }
   });
+
+  $.extend(Dialog.prototype, PartialContentLoader.prototype);
 
   return Dialog;
 });

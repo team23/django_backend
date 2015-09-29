@@ -29,6 +29,7 @@ var config = {
             'django_backend/static/django_backend/js/require-init.js',
 
             // Backend
+            'django_backend/static/django_backend/js/django_backend.partialcontentloader.js',
             'django_backend/static/django_backend/js/django_backend.widget.js',
             'django_backend/static/django_backend/js/django_backend.dialog.js',
             'django_backend/static/django_backend/js/django_backend.formdata.js',
@@ -39,7 +40,6 @@ var config = {
             'django_backend/static/django_backend/js/django_backend.filterform.js',
             'django_backend/static/django_backend/js/django_backend.forms.js',
             'django_backend/static/django_backend/js/django_backend.formset.js',
-            'django_backend/static/django_backend/js/django_backend.stackedajaxdialog.js',
             'django_backend/static/django_backend/js/django_backend.opendialog.js',
             'django_backend/static/django_backend/js/django_backend.selectrelated.js',
             'django_backend/static/django_backend/js/django_backend.inlinerelated.js',

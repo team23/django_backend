@@ -3,9 +3,9 @@ define(
     [
       'jquery',
       'stapes',
-      'django_backend.stackedajaxdialog'
+      'django_backend.ajaxdialog'
     ],
-    function ($, Stapes, StackedAjaxDialog, undefined) {
+    function ($, Stapes, AjaxDialog, undefined) {
 
   "use strict";
 
@@ -26,7 +26,7 @@ define(
       }
 
       this.getTriggerElements().on('click', function (e) {
-        var dialog = new StackedAjaxDialog(this, {
+        var dialog = new AjaxDialog(this, {
           url: $(this).attr('href'),
           width: 880,  // dialog width should be similar to normal content width content area
           height: Math.min(800, $(window).height() - 150),

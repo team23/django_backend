@@ -13,22 +13,14 @@ define('django_backend.ajaxdialog', ['jquery', 'django_backend.formdata', 'djang
       this.url = this.options.url;
     },
 
-    handleResponse: function (data) {
-      if (data.status !== 'ok') {
-        console.error('Error response: ', data);
-        return;
-      }
-
-      this.emit('load', data);
-
-      if (data.html) {
-        this.prepareDialog(data.title, data.html);
-      }
+    gotNewContent: function ($content, data) {
+      this.prepareDialog(data.title, $content);
     },
 
-    prepareContent: function (content) {
+    prepareContent: function ($content) {
       var self = this;
-      var $content = AjaxDialog.parent.prepareContent.call(this, content);
+      $content = AjaxDialog.parent.prepareContent.call(this, $content);
+
       $content.on('click', 'a', function (e) {
         var $a = $(this);
         var href = $a.attr('href');
@@ -77,11 +69,11 @@ define('django_backend.ajaxdialog', ['jquery', 'django_backend.formdata', 'djang
 
     onClickLink: function ($a) {
       var url = $a.attr('href');
-      this.load(url, this.onClickLinkSuccess);
+      this.load(url, this.onClickLinkSuccess.bind(this));
     },
 
     onClickLinkSuccess: function (data) {
-        this.handleResponse(data);
+        this.handleDataResponse(data);
     },
 
     onSubmit: function ($form) {
@@ -89,7 +81,7 @@ define('django_backend.ajaxdialog', ['jquery', 'django_backend.formdata', 'djang
       formdata.submit($form, {
         url: $form.attr('action') || this.url,
         success: function (data) {
-          self.handleResponse(data);
+          self.handleDataResponse(data);
         }
       });
       this.emit('dialog-submit');
@@ -102,7 +94,7 @@ define('django_backend.ajaxdialog', ['jquery', 'django_backend.formdata', 'djang
     onOpenSuccess: function (data) {
       this.create(
         data.title,
-        data.html);
+        this.initContent(data.html));
       this.emit('open');
     }
   });
