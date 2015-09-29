@@ -1,7 +1,7 @@
 import floppyforms.__future__ as floppyforms
 from django.test import TestCase
 
-from django_backend.backend.base.forms import BaseBackendForm
+from django_backend.forms import BaseBackendForm
 
 from .models import OneFieldModel
 
