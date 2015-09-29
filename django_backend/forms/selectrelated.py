@@ -112,13 +112,6 @@ class ManageRelatedWidget(BaseRelatedWidgetMixin, Input):
         context['inline_backend'] = inline_backend
         context['required'] = self.bound_field.required
         context['related_field_name'] = self.bound_field.related_field_name
-        if instance_pk is not None:
-            instance = self.get_instance()
-            related_field = inline_backend.model._meta.get_field(
-                self.bound_field.related_field_name)
-            related_manager_name = related_field.rel.get_accessor_name()
-            queryset = getattr(instance, related_manager_name).all()
-            context['preview'] = inline_backend.get_list_preview(queryset)
         return context
 
 

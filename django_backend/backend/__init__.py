@@ -10,7 +10,6 @@ from floppyforms.__future__.models import ModelForm, modelform_factory
 
 from ..forms import formfield_callback
 from ..group import Group
-from .preview import ListPreview
 from .preview import Preview
 from .inline_related import InlineRelatedObject
 from .columns import BackendColumn
@@ -252,8 +251,6 @@ class BaseModelBackend(ModelViewSet, BaseBackend):
     readonly_fields = ()
 
     preview = Preview()
-    list_preview = ListPreview()
-
     inline_related_object = InlineRelatedObject()
 
     def __init__(self, *args, **kwargs):
@@ -339,25 +336,7 @@ class BaseModelBackend(ModelViewSet, BaseBackend):
         from django.utils import translation
 
         with translation.override(self.language.active):
-            return self.preview.render({
-                'backend': self,
-                'model': self.model,
-                'object': object,
-            })
-
-    def get_list_preview(self, queryset):
-        from django.utils import translation
-
-        total_count = queryset.count()
-        object_list = list(queryset[:self.paginate_by])
-        overflow_count = total_count - len(object_list)
-        with translation.override(self.language.active):
-            return self.list_preview.render({
-                'backend': self,
-                'model': self.model,
-                'object_list': object_list,
-                'overflow_count': overflow_count,
-            })
+            return self.preview.render({'object': object})
 
     def get_list_actions(self):
         return {}
