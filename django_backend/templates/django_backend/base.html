@@ -1,4 +1,4 @@
-{% load i18n assets django_ajax_tags django_backend_tags staticfiles %}
+{% load i18n django_ajax_tags django_backend_tags staticfiles %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,8 +9,8 @@
 
     {% block extrahead %}
         {% block css %}
-            <link rel="stylesheet" href="{% static "django_backend/css/jquery-ui.css" %}" media="all"/>
-            <link rel="stylesheet" href="{% static "django_backend/css/django_backend.css" %}" media="all"/>
+            <link rel="stylesheet" href="{% static "django_backend/dist/jquery-ui.css" %}" media="all"/>
+            <link rel="stylesheet" href="{% static "django_backend/dist/django_backend.css" %}" media="all"/>
         {% endblock %}
         {% block head_js %}
             <script type="text/javascript">
@@ -100,9 +100,7 @@
 
     {% block before_body_end %}
         {% block js %}
-            {% assets "backend.js" %}
-                <script type="text/javascript" src="{{ ASSET_URL }}"></script>
-            {% endassets %}
+            <script type="text/javascript" src="{% static "django_backend/dist/django_backend.js" %}"></script>
         {% endblock %}
     {% endblock %}
 {% endblock %}</body>

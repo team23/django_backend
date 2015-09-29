@@ -19,7 +19,6 @@ Add the following apps to your ``INSTALLED_APPS`` settings:
         ...
         'django_backend',
         'django_ajax',
-        'django_assets',
         'floppyforms',
     )
 

@@ -36,12 +36,9 @@ setup(
         read('CHANGES.rst'))),
     install_requires=[
         'django_ajax',
-        'django-assets==0.11',
         'django-floppyforms',
         'django-superform',
         'django-viewset',
-        'jsmin',
-        'webassets==0.11',
 
         # Optional dependencies:
         #
