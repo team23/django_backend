@@ -4,11 +4,7 @@
 {% if not parent_exists %}
     <span class="helptext">{% trans "You need to save the current page before you can change this field." %}</span>
 {% else %}
-    <span class="manage-related-field">
-        {% if not readonly and inline_backend and inline_backend|has_list_permission:user %}
-            <a href="{% backend_url inline_backend.urlnames.views.index.name %}?{{ related_field_name }}={{ parent_pk }}" class="glyphicon glyphicon-pencil pull-right" data-dialog="manage-related" title="{% trans "Edit" %}"></a>
-        {% endif %}
-        <span class="preview" data-default="-">{{ preview }}</span>
+    <span class="manage-related-field" data-manage-related="{% backend_url inline_backend.urlnames.views.index.name %}?{{ related_field_name }}={{ parent_pk }}">
     </span>
 {% endif %}
 {% endwith %}

@@ -33,6 +33,7 @@ var config = {
             'django_backend/static/django_backend/js/django_backend.widget.js',
             'django_backend/static/django_backend/js/django_backend.dialog.js',
             'django_backend/static/django_backend/js/django_backend.formdata.js',
+            'django_backend/static/django_backend/js/django_backend.framedcontent.js',
             'django_backend/static/django_backend/js/django_backend.ajaxdialog.js',
             'django_backend/static/django_backend/js/django_backend.selectall.js',
             'django_backend/static/django_backend/js/django_backend.instantsubmit.js',

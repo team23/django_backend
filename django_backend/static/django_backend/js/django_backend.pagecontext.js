@@ -80,7 +80,7 @@ define(
       });
 
       // Initialize select related fields.
-      this.$element.find('.manage-related-field').each(function () {
+      this.$element.find('[data-manage-related]').each(function () {
         var manageRelated = new ManageRelated(this, {
           pageContext: self
         });

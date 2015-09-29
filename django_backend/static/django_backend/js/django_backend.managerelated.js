@@ -3,11 +3,58 @@ define(
     [
       'jquery',
       'stapes',
+      'django_backend.framedcontent',
       'django_backend.ajaxdialog'
     ],
-    function ($, Stapes, AjaxDialog, undefined) {
+    function ($, Stapes, FramedContent, AjaxDialog, undefined) {
 
   "use strict";
+
+  var ManageRelatedContent = FramedContent.subclass({
+    constructor: function (element, options) {
+        ManageRelatedContent.parent.constructor.apply(this, arguments);
+    },
+
+    prepareContent: function ($content) {
+      $content = ManageRelatedContent.parent.prepareContent.call(this, $content);
+      $content.find('h1').remove();
+      return $content;
+    },
+
+    onClickLink: function ($a) {
+      var url = $a.attr('href');
+
+      var originalPath = this.options.url.split(/\?/)[0].trim();
+      var newPath = url.split(/\?/)[0].trim();
+
+      // If we stick to the same url (maybe with different parameters) we
+      // reload the framed content. This might be the case for pagination links
+      // or sorting links.
+      //
+      // If it's changing the path we assume it's some change of the nesting
+      // like "edit this" or "add that" so we open a modal.
+      if (originalPath === newPath) {
+        this.load(url);
+      } else {
+        var dialog = new AjaxDialog($a, {
+            url: url,
+            width: 880,  // dialog width should be similar to normal content width content area
+            height: Math.min(800, $(window).height() - 150),
+            parentPageContext: this.options.parentPageContext.inherit()
+          });
+
+        dialog.on('load', function (data) {
+          if (data.action) {
+            dialog.close();
+            this.load(this.options.url);
+          }
+        }.bind(this));
+
+        dialog.open();
+      }
+      return false;
+    }
+  });
 
   var ManageRelated = Stapes.subclass({
     defaults: {},
@@ -15,58 +62,21 @@ define(
     constructor: function (element, options) {
       this.$element = $(element);
       this.options = $.extend({}, this.defaults, options);
+      this.pageContext = this.options.pageContext;
     },
 
     init: function () {
       var self = this;
 
-      var $preview = this.getPreviewElement();
-      if ($preview.is(':empty')) {
-        $preview.html($preview.attr('data-default'));
-      }
+      this.url = this.$element.attr('data-manage-related');
 
-      this.getTriggerElements().on('click', function (e) {
-        var dialog = new AjaxDialog(this, {
-          url: $(this).attr('href'),
-          width: 880,  // dialog width should be similar to normal content width content area
-          height: Math.min(800, $(window).height() - 150),
-          parentPageContext: self.options.pageContext
-        });
-
-        dialog.on('load', function (data) {
-          if (data.action == 'dismiss' || data.action == 'select' || data.action == 'delete') {
-            dialog.close();
-          }
-        });
-
-        dialog.on('destroy', function () {
-            self.updatePreview();
-        });
-
-        dialog.open();
-        return false;
+      this.framedContent = new ManageRelatedContent(this.$element, {
+          url: this.url,
+          parentPageContext: this.options.pageContext
       });
-    },
+      this.framedContent.init();
 
-    getPreviewElement: function () {
-      return this.$element.find('.preview:first');
-    },
-
-    getTriggerElements: function () {
-      return this.$element.find('[data-dialog=manage-related]');
-    },
-
-    updatePreview: function () {
-      var self = this;
-      var url = this.getTriggerElements().attr('href');
-      $.getJSON(url, function (data) {
-        var $preview = self.getPreviewElement();
-        if (data.preview) {
-          $preview.html(data.preview);
-        } else {
-          $preview.html($preview.attr('data-default'));
-        }
-      });
+      return;
     }
   });
 

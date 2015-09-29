@@ -13,16 +13,19 @@ define('django_backend.partialcontentloader', ['jquery'], function ($) {
 
       this.emit('load', data);
 
+      this.pageContext = this.options.parentPageContext.inherit();
       if (data.html) {
-        this.pageContext = this.options.parentPageContext.inherit();
         var $content = this.initContent(data.html);
         this.gotNewContent($content, data);
+      } else {
+        if (this.gotNewAction) {
+          this.gotNewAction(data.action, data);
+        }
       }
     };
 
     PartialContentLoader.prototype.getNewPageContext = function (options) {
         return this.options.parentPageContext.inherit(options);
-
     };
 
     PartialContentLoader.prototype.initContent = function (content) {
