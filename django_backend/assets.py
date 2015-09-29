@@ -41,12 +41,3 @@ backend_js = Bundle(
     filters='jsmin',
     output='django_backend/assets/backend.js')
 register('backend.js', backend_js)
-
-
-backend_css = Bundle(
-    'django_backend/css/jquery-ui.css',
-    'django_backend/css/django_backend.css',
-
-    filters='cssmin',
-    output='django_backend/assets/backend.css')
-register('backend.css', backend_css)

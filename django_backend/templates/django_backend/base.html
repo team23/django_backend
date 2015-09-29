@@ -9,9 +9,8 @@
 
     {% block extrahead %}
         {% block css %}
-            {% assets "backend.css" %}
-                <link rel="stylesheet" href="{{ ASSET_URL }}" media="all"/>
-            {% endassets %}
+            <link rel="stylesheet" href="{% static "django_backend/css/jquery-ui.css" %}" media="all"/>
+            <link rel="stylesheet" href="{% static "django_backend/css/django_backend.css" %}" media="all"/>
         {% endblock %}
         {% block head_js %}
             <script type="text/javascript">

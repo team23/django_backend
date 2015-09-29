@@ -35,7 +35,6 @@ setup(
         read('README.rst'),
         read('CHANGES.rst'))),
     install_requires=[
-        'cssmin',
         'django_ajax',
         'django-assets==0.11',
         'django-floppyforms',
