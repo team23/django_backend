@@ -12,7 +12,8 @@
     # NEW import
     from django_backend.forms import SelectRelatedField
 
-* Add ``ManageRelatedField``.
+* Add ``ManageRelatedField`` that can inline a list page of a related model
+  in the change view.
 
 0.1.0
 -----
