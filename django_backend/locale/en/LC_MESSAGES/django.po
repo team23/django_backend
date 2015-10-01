@@ -1,0 +1,393 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-10-01 16:43+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: django_backend/administration/views.py:35
+msgid "Old password"
+msgstr ""
+
+#: django_backend/administration/views.py:36
+msgid "New password"
+msgstr ""
+
+#: django_backend/administration/views.py:37
+msgid "New password (repeat)"
+msgstr ""
+
+#: django_backend/administration/views.py:60
+msgid "Your password was successfully changed."
+msgstr ""
+
+#: django_backend/auth_backend/backend.py:11
+msgid "Search"
+msgstr ""
+
+#: django_backend/auth_backend/backend.py:21
+msgid "Password"
+msgstr ""
+
+#: django_backend/auth_backend/backend.py:22
+msgid "Password (repeat)"
+msgstr ""
+
+#: django_backend/auth_backend/backend.py:77
+msgid "Permissions"
+msgstr ""
+
+#: django_backend/auth_backend/backend.py:79
+msgid "Is Active"
+msgstr ""
+
+#: django_backend/auth_backend/backend.py:83
+msgid "Groups"
+msgstr ""
+
+#: django_backend/auth_backend/backend.py:87
+msgid "Meta"
+msgstr ""
+
+#: django_backend/auth_backend/backend.py:89
+msgid "Last Login"
+msgstr ""
+
+#: django_backend/auth_backend/backend.py:93
+msgid "Date Joined"
+msgstr ""
+
+#: django_backend/auth_backend/backend.py:105
+msgid "User"
+msgstr ""
+
+#: django_backend/auth_backend/backend.py:106
+msgid "Users"
+msgstr ""
+
+#: django_backend/backend/__init__.py:370
+#: django_backend/backend/__init__.py:385
+#: django_backend/templates/django_backend/select_backend.html:17
+msgid "Name"
+msgstr ""
+
+#: django_backend/backend/__init__.py:417
+msgid "Content"
+msgstr ""
+
+#: django_backend/backend/base/views/delete.py:46
+msgid "You do not have enough permissions to delete the related objects."
+msgstr ""
+
+#: django_backend/backend/base/views/delete.py:50
+msgid "Some of the objects you want to delete are protected."
+msgstr ""
+
+#: django_backend/backend/forms.py:7
+msgid "Action"
+msgstr ""
+
+#: django_backend/backend/forms.py:21
+msgid "Select an action …"
+msgstr ""
+
+#: django_backend/backend/views/permissions.py:98
+msgid "You don't have the required permissions."
+msgstr ""
+
+#: django_backend/backend/views/permissions.py:99
+#, python-format
+msgid "Sorry, you cannot access this page. %(message)s"
+msgstr ""
+
+#: django_backend/forms/forms.py:210
+#, python-format
+msgid "Please add at least %(min_forms)s item."
+msgstr ""
+
+#: django_backend/templates/django_backend/_filter_form.html:23
+msgid "Filter "
+msgstr ""
+
+#: django_backend/templates/django_backend/_filter_form.html:28
+msgid "Apply filters"
+msgstr ""
+
+#: django_backend/templates/django_backend/_object_select_inline_actions.html:5
+msgid "Create"
+msgstr ""
+
+#: django_backend/templates/django_backend/_object_select_inline_actions.html:7
+#: django_backend/templates/django_backend/_object_select_inline_actions.html:18
+msgid "Select reusable"
+msgstr ""
+
+#: django_backend/templates/django_backend/_object_select_inline_actions.html:14
+#: django_backend/templates/django_backend/columns/_buttons.html:25
+msgid "Toggle action-dropdown"
+msgstr ""
+
+#: django_backend/templates/django_backend/_object_select_inline_actions.html:17
+msgid "Create new reusable"
+msgstr ""
+
+#: django_backend/templates/django_backend/base.html:28
+#: django_backend/templates/django_backend/login.html:13
+msgid "Django Backend"
+msgstr ""
+
+#: django_backend/templates/django_backend/base.html:35
+msgid "You're logged in as"
+msgstr ""
+
+#: django_backend/templates/django_backend/base.html:35
+msgid "(logout)"
+msgstr ""
+
+#: django_backend/templates/django_backend/base.html:41
+msgid "Websites"
+msgstr ""
+
+#: django_backend/templates/django_backend/base.html:53
+msgid "Translations"
+msgstr ""
+
+#: django_backend/templates/django_backend/columns/_buttons.html:6
+msgid "Translate"
+msgstr ""
+
+#: django_backend/templates/django_backend/columns/_buttons.html:10
+#: django_backend/templates/django_backend/forms/select_related.html:8
+#: django_backend/templates/django_backend/inline_related/_inline_related_object.html:7
+msgid "Edit"
+msgstr ""
+
+#: django_backend/templates/django_backend/columns/_buttons.html:15
+msgid "Show"
+msgstr ""
+
+#: django_backend/templates/django_backend/columns/_buttons.html:31
+#, python-format
+msgid "Show %(language)s translation"
+msgstr ""
+
+#: django_backend/templates/django_backend/columns/_buttons.html:37
+#, python-format
+msgid "Translate into %(language)s"
+msgstr ""
+
+#: django_backend/templates/django_backend/columns/_name_with_page_link.html:9
+#, python-format
+msgid "Preview %(main_branch)s online"
+msgstr ""
+
+#: django_backend/templates/django_backend/columns/_name_with_page_link.html:13
+msgid "View online"
+msgstr ""
+
+#: django_backend/templates/django_backend/columns/_select.html:3
+msgid "Select"
+msgstr ""
+
+#: django_backend/templates/django_backend/forms/formsetfield.html:15
+#: django_backend/templates/django_backend/forms/formsetfield.html:45
+msgid "Drag to re-order"
+msgstr ""
+
+#: django_backend/templates/django_backend/forms/formsetfield.html:19
+#: django_backend/templates/django_backend/forms/select_related.html:10
+msgid "Remove"
+msgstr ""
+
+#: django_backend/templates/django_backend/forms/formsetfield.html:20
+msgid "Undo remove"
+msgstr ""
+
+#: django_backend/templates/django_backend/forms/formsetfield.html:49
+#, python-format
+msgid "Remove %(instance)s"
+msgstr ""
+
+#: django_backend/templates/django_backend/forms/formsetfield.html:50
+#, python-format
+msgid "Undo remove %(instance)s"
+msgstr ""
+
+#: django_backend/templates/django_backend/forms/formsetfield.html:65
+#: django_backend/templates/django_backend/inline_related/_one_to_many.html:10
+msgid "Add new"
+msgstr ""
+
+#: django_backend/templates/django_backend/forms/manage_related.html:5
+msgid "You need to save the current page before you can change this field."
+msgstr ""
+
+#: django_backend/templates/django_backend/inline_related/_inline_related_object.html:10
+msgid "Delete"
+msgstr ""
+
+#: django_backend/templates/django_backend/logged_out.html:7
+msgid "Logged out"
+msgstr ""
+
+#: django_backend/templates/django_backend/logged_out.html:10
+msgid "You are logged out now."
+msgstr ""
+
+#: django_backend/templates/django_backend/logged_out.html:11
+msgid "Login again"
+msgstr ""
+
+#: django_backend/templates/django_backend/login.html:15
+msgid "Login"
+msgstr ""
+
+#: django_backend/templates/django_backend/object_create.html:5
+#: django_backend/templates/django_backend/object_list.html:17
+#: django_backend/templates/django_backend/object_select.html:11
+#, python-format
+msgid "Add new %(verbose_name)s"
+msgstr ""
+
+#: django_backend/templates/django_backend/object_delete.html:10
+#: django_backend/templates/django_backend/object_form.html:10
+msgid "Translations:"
+msgstr ""
+
+#: django_backend/templates/django_backend/object_delete.html:18
+#, python-format
+msgid "Delete %(object)s"
+msgstr ""
+
+#: django_backend/templates/django_backend/object_delete.html:20
+#: django_backend/templates/django_backend/object_form.html:23
+msgid "view online"
+msgstr ""
+
+#: django_backend/templates/django_backend/object_delete.html:30
+#, python-format
+msgid ""
+"Deleting the <strong>%(object)s</strong> would result in\n"
+"                    deleting related objects, but your account doesn't have\n"
+"                    permission to delete the following types of objects:"
+msgstr ""
+
+#: django_backend/templates/django_backend/object_delete.html:42
+#, python-format
+msgid ""
+"Deleting the <strong>%(object)s</strong> would require\n"
+"                    deleting the following protected related objects:"
+msgstr ""
+
+#: django_backend/templates/django_backend/object_delete.html:53
+msgid "Ok, go back."
+msgstr ""
+
+#: django_backend/templates/django_backend/object_delete.html:59
+#, python-format
+msgid ""
+"Are you sure you want to delete\n"
+"                    <strong>%(object)s</strong>? All of the following "
+"related\n"
+"                    items will be deleted:"
+msgstr ""
+
+#: django_backend/templates/django_backend/object_delete.html:66
+msgid "do not delete and go back"
+msgstr ""
+
+#: django_backend/templates/django_backend/object_delete.html:69
+#: django_backend/templates/django_backend/object_form.html:44
+#: django_backend/templates/django_backend/object_read.html:13
+msgid "delete"
+msgstr ""
+
+#: django_backend/templates/django_backend/object_form.html:18
+msgid "go back to list"
+msgstr ""
+
+#: django_backend/templates/django_backend/object_form.html:88
+msgid "dismiss"
+msgstr ""
+
+#: django_backend/templates/django_backend/object_form.html:90
+msgid "save and continue"
+msgstr ""
+
+#: django_backend/templates/django_backend/object_form.html:94
+msgid "save"
+msgstr ""
+
+#: django_backend/templates/django_backend/object_form.html:97
+msgid "publish"
+msgstr ""
+
+#: django_backend/templates/django_backend/object_list.html:11
+#, python-format
+msgid "Manage %(verbose_name_plural)s"
+msgstr ""
+
+#: django_backend/templates/django_backend/object_list.html:46
+msgid "Sort"
+msgstr ""
+
+#: django_backend/templates/django_backend/object_list.html:47
+msgid "Reverse Sort"
+msgstr ""
+
+#: django_backend/templates/django_backend/object_list.html:74
+msgid "Go"
+msgstr ""
+
+#: django_backend/templates/django_backend/object_list.html:86
+#: django_backend/templates/django_backend/object_select.html:53
+#, python-format
+msgid "No %(verbose_name_plural)s found."
+msgstr ""
+
+#: django_backend/templates/django_backend/object_read.html:10
+msgid "edit"
+msgstr ""
+
+#: django_backend/templates/django_backend/object_translate.html:5
+#, python-format
+msgid "Translate %(origin)s into %(language)s"
+msgstr ""
+
+#: django_backend/templates/django_backend/object_update.html:5
+#, python-format
+msgid "Update %(object)s"
+msgstr ""
+
+#: django_backend/templates/django_backend/page_wrapper.html:15
+msgid "open as dialog"
+msgstr ""
+
+#: django_backend/templates/django_backend/paginator/paginator.html:12
+msgid "prev"
+msgstr ""
+
+#: django_backend/templates/django_backend/paginator/paginator.html:32
+msgid "next"
+msgstr ""
+
+#: django_backend/templates/django_backend/select_backend.html:9
+msgid "Please select a content type from below."
+msgstr ""
+
+#: django_backend/templates/django_backend/select_backend.html:18
+msgid "Actions"
+msgstr ""
