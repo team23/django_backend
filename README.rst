@@ -18,9 +18,22 @@ Add the following apps to your ``INSTALLED_APPS`` settings:
         'django.contrib.staticfiles',
         ...
         'django_backend',
-        'django_ajax',
         'floppyforms',
     )
+
+Make sure ``SITE_ID`` is set:
+
+.. code-block:: python
+
+    SITE_ID = 1
+
+Make sure ``LANGUAGE_CODE`` is valid:
+
+.. code-block:: python
+
+    LANGUAGE_CODE = 'en'
+
+**Warning:** Django's default language code is *not* valid, as "en-us" is not included in settings.LANGUAGES.
 
 Add the following line to your ``urls.py``:
 
