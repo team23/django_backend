@@ -90,7 +90,7 @@ msgstr "Inhalt"
 
 #: django_backend/backend/base/views/delete.py:46
 msgid "You do not have enough permissions to delete the related objects."
-msgstr "Sie haben nicht genügend Rechte um die verknüpften Objekte zu löschen."
+msgstr "Sie haben keine ausreichenden Rechte um die verknüpften Objekte zu löschen."
 
 #: django_backend/backend/base/views/delete.py:50
 msgid "Some of the objects you want to delete are protected."
@@ -102,7 +102,7 @@ msgstr "Aktion"
 
 #: django_backend/backend/forms.py:21
 msgid "Select an action …"
-msgstr "Aktion wählen ..."
+msgstr "Aktion wählen …"
 
 #: django_backend/backend/views/permissions.py:98
 msgid "You don't have the required permissions."
@@ -205,7 +205,7 @@ msgstr "Auswählen"
 #: django_backend/templates/django_backend/forms/formsetfield.html:15
 #: django_backend/templates/django_backend/forms/formsetfield.html:45
 msgid "Drag to re-order"
-msgstr "Ziehen um umzusortieren"
+msgstr "Ziehen zum Umsortieren"
 
 #: django_backend/templates/django_backend/forms/formsetfield.html:19
 #: django_backend/templates/django_backend/forms/select_related.html:10
@@ -288,7 +288,7 @@ msgid ""
 msgstr ""
 "Das Löschen von <strong>%(object)s</strong> würde auch zugehörige Objekte "
 "löschen, \n"
-"Ihr Account hat aber nicht die nötigen Rechte um folgende Objekttypen zu "
+"Ihr Account hat aber nicht die erforderlichen Rechte um folgende Objekttypen zu "
 "löschen:"
 
 #: django_backend/templates/django_backend/object_delete.html:42
@@ -385,7 +385,7 @@ msgstr "%(object)s bearbeiten"
 
 #: django_backend/templates/django_backend/page_wrapper.html:15
 msgid "open as dialog"
-msgstr "Als Dialog öffnen."
+msgstr "als Dialog öffnen"
 
 #: django_backend/templates/django_backend/paginator/paginator.html:12
 msgid "prev"
