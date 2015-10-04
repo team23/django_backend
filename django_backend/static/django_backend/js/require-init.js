@@ -1,5 +1,5 @@
 require.config({
-    baseUrl: CONFIG.STATIC_URL + 'django_backend/js'
+    baseUrl: window.CONFIG.STATIC_URL + 'django_backend/js'
 });
 
 // Wrap "lame" javascript modules, so they can be used by requirejs

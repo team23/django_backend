@@ -15,7 +15,6 @@ USE_L10N = True
 
 INSTALLED_APPS = [
     'django_backend',
-    'django_ajax',
     'django_callable_perms',
     'django_superform',
     'django_viewset',

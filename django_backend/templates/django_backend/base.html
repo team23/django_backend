@@ -1,4 +1,4 @@
-{% load i18n django_ajax_tags django_backend_tags staticfiles %}
+{% load i18n django_backend_tags static staticfiles %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +14,10 @@
         {% endblock %}
         {% block head_js %}
             <script type="text/javascript">
-                var CONFIG = {% json JS_CONTEXT or null %};
+                var CONFIG = {
+                    STATIC_URL: '{% get_static_prefix %}',
+                    MEDIA_URL:  '{% get_media_prefix %}'
+                }
             </script>
         {% endblock %}
     {% endblock %}

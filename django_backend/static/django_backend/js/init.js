@@ -9,9 +9,6 @@ require(
   "use strict";
 
   $(document).ready(function () {
-
-    var CONFIG = window.CONFIG;
-
     // Initialize root page context.
     var $pageContent = $('.container');
     var pageContext = new PageContext(undefined, {});
