@@ -1,0 +1,59 @@
+/*
+ * Styling inline components in backend.
+ */
+
+
+.generic-relation-list-field__toolbox {
+    @extend .clearfix;
+    margin-bottom: 0.5em;
+}
+
+
+.generic-relation-list-field__item {
+  clear: both;
+  margin-bottom: 8px;
+
+  border-radius: 3px;
+  background-color: rgba(255,255,255,0.8);
+
+  .generic-relation-list-field__item__inline {
+    position: relative;
+    padding: 0.5em;
+
+    > .content {
+      max-height: 300px;
+      overflow: hidden;
+    }
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  &:last-child .generic-relation-list-field__item__inline {
+    border-bottom: 0 none;
+  }
+
+  .content {
+    overflow: hidden;
+
+    *:first-child{
+      margin-top: 0;
+    }
+  }
+
+  &:not(.delete) .generic-relation-list-field__item:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 15px;
+    background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+    background-image: -moz-linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+    background-image: -o-linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+    background-image: linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+  }
+}
+

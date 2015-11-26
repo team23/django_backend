@@ -10,6 +10,7 @@ define(
       'django_backend.inlinerelated',
       'django_backend.managerelated',
       'django_backend.selectrelated',
+      'django_backend.genericrelationlistfield',
       'django_backend.opendialog'
     ], function (
       $,
@@ -21,6 +22,7 @@ define(
       InlineRelated,
       ManageRelated,
       SelectRelated,
+      GenericRelationListField,
       opendialog) {
 
   "use strict";
@@ -93,6 +95,14 @@ define(
           pageContext: self
         });
         selectRelated.init();
+      });
+
+      // Initialize select related fields.
+      this.$element.find('.generic-relation-list-field').each(function () {
+        var genericRelationListField = new GenericRelationListField(this, {
+          pageContext: self
+        });
+        genericRelationListField.init();
       });
 
       // Initialize select all checkbox.

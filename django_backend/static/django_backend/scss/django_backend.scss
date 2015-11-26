@@ -6,6 +6,7 @@ $shaded-body-background-color: #E5E5E5;
 @import 'bootstrap';
 @import 'forms';
 @import 'formtabs';
+@import 'generic_relation_list_field';
 @import 'selectrelated';
 @import 'inlinerelated';
 @import 'login';
@@ -32,55 +33,6 @@ body {
 .media-preview {
     margin: 5px;
     padding: 5px;
-}
-
-/*
- * Styling inline components in backend.
- */
-
-.region-component {
-  clear: both;
-  //padding: 0.5em;
-  margin-bottom: 8px;
-  background-color: rgba(255,255,255,0.8);
-
-  .inline-component {
-    position: relative;
-
-    > .content {
-      max-height: 300px;
-      overflow: hidden;
-    }
-
-    img {
-      max-width: 100%;
-    }
-  }
-  &:last-child .inline-component {
-    border-bottom: 0 none;
-  }
-
-  .content {
-//    float: left;
-    overflow: hidden;
-    *:first-child{
-      margin-top: 0;
-    }
-  }
-
-  &:not(.delete) .inline-component:after {
-    content: " ";
-    display: block;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 15px;
-    background-image: -webkit-linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
-    background-image: -moz-linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
-    background-image: -o-linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
-    background-image: linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
-  }
 }
 
 /*
