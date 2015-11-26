@@ -175,20 +175,21 @@ class BaseBackendInlineFormSet(CopyOnTranslateInlineFormSetMixin, _BaseInlineFor
     '''
 
     def __init__(self, *args, **kwargs):
+        self.order_field = kwargs.pop('order_field', None)
         self.min_forms = kwargs.pop('min_forms', None)
         super(BaseBackendInlineFormSet, self).__init__(*args, **kwargs)
 
         # Order the inline queryset if possible.
-        order_field = getattr(self.model, 'order_field', None)
-        if order_field:
-            self.queryset = self.queryset.order_by(order_field)
+        if self.order_field is None:
+            self.order_field = getattr(self.model, 'order_field', None)
+        if self.order_field:
+            self.queryset = self.queryset.order_by(self.order_field)
 
     def add_fields(self, form, index):
         super(BaseBackendInlineFormSet, self).add_fields(form, index)
 
-        order_field = getattr(self.model, 'order_field', None)
-        if order_field and order_field in form.fields:
-            form.fields[order_field].widget = forms.HiddenInput()
+        if self.order_field and self.order_field in form.fields:
+            form.fields[self.order_field].widget = forms.HiddenInput()
         if self.can_delete:
             form.fields['DELETE'].widget = forms.HiddenInput()
 
