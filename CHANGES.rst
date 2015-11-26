@@ -15,6 +15,9 @@
 * Add ``ManageRelatedField`` that can inline a list page of a related model
   in the change view.
 
+* Add ``GenericRelationListField`` that can show a reorderable list related
+  by a intermediary model with a generic foreign key.
+
 0.1.0
 -----
 
