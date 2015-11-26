@@ -1,0 +1,57 @@
+{% load django_backend_tags floppyforms %}
+
+<div class="generic-relation-list-field" data-formset-prefix="{{ formset.prefix }}">
+    {{ formset.management_form }}
+
+    {% block header_buttons %}
+        {% if not readonly and related_models %}
+        <div class="generic-relation-list-field__toolbox">
+            <div class="dropdown pull-right">
+                <button
+                        id="{{ formset.prefix }}-add-button"
+                        type="button"
+                        class="btn btn-default btn-xs"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false">
+                    Add new <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="{{ formset.prefix }}-add-button">
+                    {% for model in related_models %}
+                    {% with opts=model|model_opts inline_backend=backend|find_inline_backend_by_model:model %}
+                    <li><a href="{% backend_url inline_backend.urlnames.views.create.name %}" data-dialog="add-relation">{{ opts.verbose_name }}</a></li>
+                    {% endwith %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+    {% endblock %}
+
+    <div class="formset-form generic-relation-list-field__item template">
+        {% for field in formset.empty_form %}
+            {{ field.as_hidden }}
+        {% endfor %}
+
+        {% include "django_backend/generic_relation_list_field/_generic_relation_inline.html" with backend=backend is_template=1 %}
+    </div>
+
+    <div class="formset generic-relation-list-field__list"{% if formset.order_field %} data-order-field="{{ formset.order_field }}"{% endif %}>
+        {% for inline_form in formset.forms %}
+            <div class="formset-form generic-relation-list-field__item">
+                {{ inline_form.errors }}
+
+                {% for field in inline_form %}
+                    {{ field.as_hidden }}
+                {% endfor %}
+
+                {% with relation_object=inline_form.instance.content_object %}
+                {% with inline_backend=backend|find_inline_backend_by_model:relation_object %}
+                    {% include "django_backend/generic_relation_list_field/_generic_relation_inline.html" with backend=inline_backend object=relation_object %}
+                {% endwith %}
+                {% endwith %}
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
