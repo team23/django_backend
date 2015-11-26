@@ -37,6 +37,9 @@ class SaveInlineDoneMixin(object):
             'object_id': self.object.pk,
             'content_type_id': ContentType.objects.get_for_model(
                 self.object).pk,
+            'urls': {
+                'update': self.get_update_url(self.object),
+            },
             'preview': self.get_preview(self.object),
             'inline_related': self.get_inline_related_object_preview(self.object)
         }
