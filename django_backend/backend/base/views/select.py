@@ -1,3 +1,5 @@
+from django.contrib.contenttypes.models import ContentType
+
 from .list import BackendListView
 
 
@@ -28,6 +30,8 @@ class SelectViewMixin(object):
                 json.update({
                     'action': 'select',
                     'object_id': self.object.pk,
+                    'content_type_id': ContentType.objects.get_for_model(
+                        self.object).pk,
                     'preview': self.get_preview(self.object),
                 })
         return json

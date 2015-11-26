@@ -1,3 +1,4 @@
+from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponseRedirect
 
 
@@ -34,6 +35,8 @@ class SaveInlineDoneMixin(object):
             'status': 'ok',
             'action': 'select',
             'object_id': self.object.pk,
+            'content_type_id': ContentType.objects.get_for_model(
+                self.object).pk,
             'preview': self.get_preview(self.object),
             'inline_related': self.get_inline_related_object_preview(self.object)
         }
