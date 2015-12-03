@@ -7,6 +7,7 @@ from django.template.loader import render_to_string
 from django.template.defaultfilters import unordered_list
 from django.utils.encoding import force_text
 from django.core.urlresolvers import NoReverseMatch, reverse
+import sys
 
 import django_backend
 from ..backend import DEFAULT_REGISTRY
@@ -162,6 +163,14 @@ class RenderNode(template.Node):
             context.update(extra_context)
 
             return renderable.render(context)
+        except Exception as exception:
+            sys.stderr.write(
+                "Exception during rendering renderable {renderable!r}: "
+                "{type}: {exception}\n".format(
+                    renderable=renderable,
+                    type=type(exception).__name__,
+                    exception=exception))
+            raise exception
         finally:
             context.pop()
 
