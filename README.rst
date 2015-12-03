@@ -2,7 +2,7 @@
 django-backend
 ==============
 
-|build-status|
+|pypi-badge| |build-status|
 
 .. note::
 
@@ -69,6 +69,9 @@ Run tests
 
 .. |build-status| image:: https://travis-ci.org/team23/django_backend.svg
     :target: https://travis-ci.org/team23/django_backend
+
+.. |pypi-badge| image:: https://img.shields.io/pypi/v/django-admin-backend.svg
+    :target: https://pypi.python.org/pypi/django-admin-backend
 
 Build static assets
 -------------------
