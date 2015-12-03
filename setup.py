@@ -21,7 +21,7 @@ def find_version(*file_paths):
 
 
 setup(
-    name='django-backend',
+    name='django-admin-backend',
     version=find_version('django_backend', '__init__.py'),
     author=u'David Danier',
     author_email='david.danier@team23.de',
