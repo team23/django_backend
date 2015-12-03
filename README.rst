@@ -4,6 +4,15 @@ django-backend
 
 |build-status|
 
+.. note::
+
+    This module can be imported in python with the name ``django_backend``. The
+    PyPI package is called `django-admin-backend`_ though. We had to use a
+    different name as ``django-backend`` was already registered on PyPI. It's a
+    little unfortunate this way, but a necessary workaround for now.
+
+.. _django-admin-backend: https://pypi.python.org/pypi/django-admin-backend
+
 Installation
 ============
 
