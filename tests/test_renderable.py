@@ -27,7 +27,7 @@ class RenderableErrorHandling(TestCase):
         template = Template(
             '''
             {% load django_backend_tags %}
-            {% render render_object %}
+            {% render renderable %}
             ''')
         with self.assertRaises(TemplateDoesNotExist):
             template.render(Context({'renderable': renderable}))
