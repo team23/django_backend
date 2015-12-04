@@ -2,7 +2,6 @@ from django.conf.urls import include, url
 from django.contrib.auth import get_permission_codename
 from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
-from django.template.loader import render_to_string
 from django.utils.datastructures import SortedDict
 from django.utils.translation import ugettext_lazy as _
 from django_viewset import ViewSet, ModelViewSet

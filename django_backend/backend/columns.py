@@ -1,3 +1,4 @@
+from django.template import Context
 from django.template.loader import render_to_string
 
 
@@ -14,6 +15,11 @@ class BackendColumn(object):
             return '-{0}'.format(self.sort_field)
 
     def render(self, context):
-        return render_to_string(self.template_name, {
+        context_data = {}
+        if isinstance(context, Context):
+            context = context.flatten()
+        context_data.update(context)
+        context_data.update({
             'column': self,
-        }, context)
+        })
+        return render_to_string(self.template_name, context_data)

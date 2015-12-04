@@ -1,6 +1,7 @@
 import json
 from django.core.serializers.json import DjangoJSONEncoder
 from django.http import HttpResponse
+from django.template import Context
 from django.template import RequestContext
 from django.template.loader import render_to_string, select_template
 from django.utils.encoding import force_unicode
@@ -73,11 +74,16 @@ class DialogResponseMixin(JsonResponseMixin):
 
     def render_to_response(self, context, **response_kwargs):
         if self.is_dialog():
+            context_data = {}
+            context_data.update(RequestContext(self.request).flatten())
+            if context is not None:
+                if isinstance(context, Context):
+                    context = context.flatten()
+                context_data.update(context)
             json_data = self.get_json()
             json_data['html'] = render_to_string(
                 self.get_template_names(),
-                context,
-                context_instance=RequestContext(self.request))
+                context_data)
             return self.render_json_response(json_data, **response_kwargs)
         else:
             return self.render_html_response(context, **response_kwargs)
