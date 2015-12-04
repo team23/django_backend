@@ -8,6 +8,7 @@ from django.template.defaultfilters import unordered_list
 from django.utils.encoding import force_text
 from django.core.urlresolvers import NoReverseMatch, reverse
 import sys
+import traceback
 
 import django_backend
 from ..backend import DEFAULT_REGISTRY
@@ -170,7 +171,10 @@ class RenderNode(template.Node):
                     renderable=renderable,
                     type=type(exception).__name__,
                     exception=exception))
-            raise exception
+            exc_info = sys.exc_info()
+            traceback.print_exception(*exc_info, **{'file': sys.stderr})
+            sys.stderr.write('\n')
+            raise
         finally:
             context.pop()
 
