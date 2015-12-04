@@ -1,5 +1,5 @@
 define(
-    'django_backend.genericrelationlistfield',
+    'django_backend.relationlistfield',
     [
       'jquery',
       'stapes',
@@ -9,12 +9,17 @@ define(
 
   "use strict";
 
-  var GenericRelationListField = Stapes.subclass({
+  var RelationListField = Stapes.subclass({
     defaults: {},
 
     constructor: function (element, options) {
       this.$element = $(element);
       this.options = $.extend({}, this.defaults, options);
+      this.objectIdField = this.$element.attr('data-object-id-field');
+      this.contentTypeField = this.$element.attr('data-content-type-field');
+      if (!this.objectIdField) {
+        console.error('You need to set data-object-id-field attribute', element);
+      }
     },
 
     /* Setup DOM handlers.
@@ -81,7 +86,7 @@ define(
        * Handler for edit item icon.
        */
       this.$element.on('click', '[data-dialog=update-relation]', function (event) {
-        var $relationItem = $(this).parents('.generic-relation-list-field__item');
+        var $relationItem = $(this).parents('.relation-list-field__item');
         openDialog.call(this, $relationItem);
         return false;
       });
@@ -96,17 +101,20 @@ define(
      * Set the fields of a item form.
      */
     _updateFields: function ($itemFields, data) {
-      var fieldData = {
-          object_id: data.object_id,
-          content_type: data.content_type_id,
-      };
+      var fieldData = {};
+      if (this.objectIdField) {
+        fieldData[this.objectIdField] = data.object_id;
+      }
+      if (this.contentTypeField) {
+        fieldData[this.contentTypeField] = data.content_type_id;
+      }
 
       var updateFieldData = function () {
-          var match = $(this).attr('name').match(/-\d+-(.+)$/);
-          if (match && fieldData[match[1]]) {
-              var fieldName = match[1];
-              $(this).attr('value', fieldData[fieldName]);
-          }
+        var match = $(this).attr('name').match(/-\d+-(.+)$/);
+        if (match && fieldData[match[1]]) {
+          var fieldName = match[1];
+          $(this).attr('value', fieldData[fieldName]);
+        }
       };
 
       $itemFields.find('input').each(updateFieldData);
@@ -116,7 +124,7 @@ define(
      * Prepare a new relation form and return it.
      */
     _getTemplate: function (prefix) {
-      var $template = this.$element.find('.generic-relation-list-field__item.template').clone();
+      var $template = this.$element.find('.relation-list-field__item.template').clone();
       $template.removeClass('template');
 
       $template.find('input').each(function () {
@@ -143,7 +151,7 @@ define(
       this._updateFields($template, data);
 
       $template.find('.content').append(data.preview);
-      var $formset = this.$element.find('.generic-relation-list-field__list')
+      var $formset = this.$element.find('.relation-list-field__list')
       $formset.append($template);
 
       this.options.pageContext.inherit().init($formset);
@@ -175,6 +183,6 @@ define(
     }
   });
 
-  return GenericRelationListField;
+  return RelationListField;
 
 });

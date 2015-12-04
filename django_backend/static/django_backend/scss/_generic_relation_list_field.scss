@@ -3,20 +3,20 @@
  */
 
 
-.generic-relation-list-field__toolbox {
+.relation-list-field__toolbox {
     @extend .clearfix;
     margin-bottom: 0.5em;
 }
 
 
-.generic-relation-list-field__item {
+.relation-list-field__item {
   clear: both;
   margin-bottom: 8px;
 
   border-radius: 3px;
   background-color: rgba(255,255,255,0.8);
 
-  .generic-relation-list-field__item__inline {
+  .relation-list-field__item__inline {
     position: relative;
     padding: 0.5em;
 
@@ -30,7 +30,7 @@
     }
   }
 
-  &:last-child .generic-relation-list-field__item__inline {
+  &:last-child .relation-list-field__item__inline {
     border-bottom: 0 none;
   }
 
@@ -42,7 +42,7 @@
     }
   }
 
-  &:not(.delete) .generic-relation-list-field__item:after {
+  &:not(.delete) .relation-list-field__item:after {
     content: " ";
     display: block;
     position: absolute;

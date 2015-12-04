@@ -42,6 +42,7 @@ var config = {
             'django_backend/static/django_backend/js/django_backend.forms.js',
             'django_backend/static/django_backend/js/django_backend.formset.js',
             'django_backend/static/django_backend/js/django_backend.opendialog.js',
+            'django_backend/static/django_backend/js/django_backend.relationlistfield.js',
             'django_backend/static/django_backend/js/django_backend.selectrelated.js',
             'django_backend/static/django_backend/js/django_backend.inlinerelated.js',
             'django_backend/static/django_backend/js/django_backend.managerelated.js',

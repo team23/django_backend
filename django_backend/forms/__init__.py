@@ -1,4 +1,4 @@
 from .fields import *  # noqa
 from .forms import *  # noqa
+from .relation_list_fields import *  # noqa
 from .selectrelated import *  # noqa
-from .generic_relation_list import *  # noqa
