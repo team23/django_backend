@@ -281,6 +281,16 @@ def format_unordered_list(object_list, template_name):
     return unordered_list(object_list)
 
 
+@register.filter('getattr')
+def getattr_filter(object, attr):
+    return getattr(object, attr)
+
+
+@register.filter
+def getattr_or_none(object, attr):
+    return getattr(object, attr, None)
+
+
 @register.filter
 def backend_preview(object, backend):
     return backend.get_preview(object)
