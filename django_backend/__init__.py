@@ -1,4 +1,5 @@
-from .group import Group
+from .backend.renderable import Renderable  # noqa
+from .group import Group  # noqa
 from .sitebackend import SiteBackend
 
 

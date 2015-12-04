@@ -165,6 +165,9 @@ class RenderNode(template.Node):
 
             return renderable.render(context)
         except Exception as exception:
+            # Change in Renderable.render might have fixed this issue and we
+            # might be able to remove this. But test first really hard that
+            # really no errors are made silent.
             sys.stderr.write(
                 "Exception during rendering renderable {renderable!r}: "
                 "{type}: {exception}\n".format(

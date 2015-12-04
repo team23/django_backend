@@ -46,12 +46,21 @@ class Renderable(object):
     def render(self, context=None):
         if context is None:
             context = {}
-        if not isinstance(context, Context):
-            context = Context(context)
+        if isinstance(context, Context):
+            context = context.flatten()
+
+        context_data = {}
+        context_data.update(context)
+        context_data.update(self.get_context_data(context))
+
+        # We cannot pass a ``Context`` instance from the Django template
+        # language down here directly. This is deprecated! And we had a bug
+        # where a ``TemplateDoesNotExist`` error was swallowed during
+        # rendering. And that was super annoying since no error at all was spit
+        # out.
         return render_to_string(
             self.get_template_name(context),
-            self.get_context_data(context),
-            context)
+            context_data)
 
 
 class RenderableModelInstance(Renderable):
