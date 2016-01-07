@@ -6,7 +6,8 @@ from django.template import RequestContext
 from django.template.loader import render_to_string, select_template
 from django.utils.encoding import force_unicode
 
-from django_backend.compat import get_template_name
+from ..compat import context_flatten
+from ..compat import get_template_name
 
 
 class JsonResponseMixin(object):
@@ -75,10 +76,10 @@ class DialogResponseMixin(JsonResponseMixin):
     def render_to_response(self, context, **response_kwargs):
         if self.is_dialog():
             context_data = {}
-            context_data.update(RequestContext(self.request).flatten())
+            context_data.update(context_flatten(RequestContext(self.request)))
             if context is not None:
                 if isinstance(context, Context):
-                    context = context.flatten()
+                    context = context_flatten(context)
                 context_data.update(context)
             json_data = self.get_json()
             json_data['html'] = render_to_string(

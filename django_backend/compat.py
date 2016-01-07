@@ -11,3 +11,13 @@ def get_template_name(template):
         return template.template.name
     else:
         return template.name
+
+
+def context_flatten(context):
+    if django.VERSION < (1, 8):
+        flat = {}
+        for d in context.dicts:
+            flat.update(d)
+        return flat
+    else:
+        return context.flatten()

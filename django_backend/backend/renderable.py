@@ -1,6 +1,8 @@
 from django.template import Context
 from django.template.loader import render_to_string
 
+from ..compat import context_flatten
+
 
 class Renderable(object):
     """
@@ -47,7 +49,7 @@ class Renderable(object):
         if context is None:
             context = {}
         if isinstance(context, Context):
-            context = context.flatten()
+            context = context_flatten(context)
 
         context_data = {}
         context_data.update(context)

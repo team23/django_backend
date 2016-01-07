@@ -1,6 +1,8 @@
 from django.template import Context
 from django.template.loader import render_to_string
 
+from ..compat import context_flatten
+
 
 class BackendColumn(object):
     def __init__(self, name, template_name, position=0, sort_field=None):
@@ -17,7 +19,7 @@ class BackendColumn(object):
     def render(self, context):
         context_data = {}
         if isinstance(context, Context):
-            context = context.flatten()
+            context = context_flatten(context)
         context_data.update(context)
         context_data.update({
             'column': self,

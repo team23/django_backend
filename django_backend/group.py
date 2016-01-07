@@ -2,6 +2,8 @@ from django.forms.forms import pretty_name
 from django.template import Context
 from django.template.loader import render_to_string
 
+from .compat import context_flatten
+
 
 class Group(list):
     """
@@ -37,7 +39,7 @@ class Group(list):
     def render(self, context):
         context_data = {}
         if isinstance(context, Context):
-            context_data.update(context.flatten())
+            context_data.update(context_flatten(context))
         context_data.update(self.get_context_data(context))
         return render_to_string(
             self.get_template_name(),
