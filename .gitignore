@@ -1,5 +1,7 @@
 *.map
 *.pyc
 /dist/
+/django_admin_backend.egg-info/
+/.cache/
 /.tox/
 /node_modules/
