@@ -1,8 +1,7 @@
+from collections import OrderedDict
 from django.conf.urls import include, url
 from django.contrib.auth import get_permission_codename
-from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
-from django.utils.datastructures import SortedDict
 from django.utils.translation import ugettext_lazy as _
 from django_viewset import ViewSet, ModelViewSet
 from floppyforms.__future__.models import ModelForm, modelform_factory
@@ -349,7 +348,7 @@ class BaseModelBackend(ModelViewSet, BaseBackend):
         for name, action in self.get_list_actions().items():
             if action.check_permission(backend=self, user=user):
                 available_actions.append((name, action))
-        return SortedDict(
+        return OrderedDict(
             list(sorted(
                 available_actions,
                 key=lambda action_tuple: action_tuple[1].position)))
@@ -376,7 +375,7 @@ class BaseModelBackend(ModelViewSet, BaseBackend):
 
     @property
     def list_columns(self):
-        return SortedDict(list(sorted(self.get_list_columns().items(), cmp=lambda x,y: cmp(x[1].position, y[1].position))))
+        return OrderedDict(list(sorted(self.get_list_columns().items(), cmp=lambda x,y: cmp(x[1].position, y[1].position))))
 
     def get_select_columns(self):
         return {
@@ -391,7 +390,7 @@ class BaseModelBackend(ModelViewSet, BaseBackend):
 
     @property
     def select_columns(self):
-        return SortedDict(list(sorted(self.get_select_columns().items(), cmp=lambda x,y: cmp(x[1].position, y[1].position))))
+        return OrderedDict(list(sorted(self.get_select_columns().items(), cmp=lambda x,y: cmp(x[1].position, y[1].position))))
 
     def get_form_tab_definition(self):
         return {}
@@ -403,7 +402,7 @@ class BaseModelBackend(ModelViewSet, BaseBackend):
             (key, tab)
             for key, tab in tab_definition.items()
             if tab.rows)
-        return SortedDict(
+        return OrderedDict(
             sorted(
                 tab_definition_tuples,
                 key=lambda t: t[1].position))
