@@ -63,6 +63,8 @@ class BaseBackend(TemplateHintProvider, ViewSet):
             id)
 
     def reverse(self, viewname, urlconf=None, args=None, kwargs=None, prefix=None, current_app=None):
+        from django.contrib.sites.models import Site
+
         if kwargs is None:
             kwargs = {}
         kwargs.setdefault('site', Site.objects.get_current().pk)
