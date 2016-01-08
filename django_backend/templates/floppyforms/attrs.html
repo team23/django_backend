@@ -1,0 +1,1 @@
+{% if readonly %} disabled="disabled"{% endif %}{% for name, value in attrs.items %} {{ name }}{% if value != True %}="{{ value }}"{% endif %}{% endfor %}{% if placeholder and "placeholder" not in attrs.keys %} placeholder="{{ placeholder }}"{% endif %}{% if "class" not in attrs.keys %} class="form-control"{% endif %}

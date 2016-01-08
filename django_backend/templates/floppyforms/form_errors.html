@@ -1,0 +1,5 @@
+{% load floppyforms %}
+{% block errors %}{% if form.non_field_errors or form|hidden_field_errors %}<div class="form errors"><ul class="errorlist">
+    {% for error in form.non_field_errors %}<li>{{ error }}</li>{% endfor %}
+    {% for error in form|hidden_field_errors %}<li>{{ error }}</li>{% endfor %}
+</ul></div>{% endif %}{% endblock %}
