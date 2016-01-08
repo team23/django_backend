@@ -164,6 +164,9 @@ class FormRow(BaseFormElement):
         return list(sorted(self._fields,
                            cmp=lambda x, y: cmp(x.position, y.position)))
 
+    def field_names(self):
+        return [field.field for field in self.fields]
+
 
 class FormField(BaseFormElement):
     template_name = 'django_backend/formlayout/field.html'
