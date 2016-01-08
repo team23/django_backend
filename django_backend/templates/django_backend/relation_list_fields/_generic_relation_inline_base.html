@@ -1,0 +1,40 @@
+{% load django_backend_tags i18n %}
+
+{% block relation_list %}
+<div class="relation-list-field__item__inline">
+
+    {% block draghandle %}
+        {% if not readonly %}
+            <div class="draghandle">
+                <span class="draghandle move glyphicon glyphicon-move" title='{% trans "Drag to re-order" %}'></span>
+            </div>
+        {% endif %}
+    {% endblock %}
+
+    {% block tools %}
+        {% if not readonly %}
+            <div class="tools">
+                <span class="form-delete glyphicon glyphicon-remove" title="Remove" data-toggle="tooltip"></span>
+                <span class="form-undo-delete glyphicon glyphicon-repeat" title="Undo remove" data-toggle="tooltip"></span>
+                {% if is_template or backend|has_change_permission:user|for_object:object %}
+                    <a href="{% if not is_template %}{% backend_url backend.urlnames.views.update.name pk=object.pk %}{% endif %}"
+                        data-dialog="update-relation" class="glyphicon glyphicon-pencil"
+                        title="Edit"
+                        data-toggle="tooltip"></a>
+                {% endif %}
+            </div>
+        {% endif %}
+    {% endblock %}
+
+    {% block content %}
+        <div class="content">
+            {% if not is_template %}
+                {% block preview %}
+                    {{ object|backend_preview:backend }}
+                {% endblock %}
+            {% endif %}
+        </div>
+    {% endblock %}
+
+</div>
+{% endblock %}
