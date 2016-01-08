@@ -40,7 +40,5 @@ class Group(list):
         context_data = {}
         if isinstance(context, Context):
             context_data.update(context_flatten(context))
-        context_data.update(self.get_context_data(context))
-        return render_to_string(
-            self.get_template_name(),
-            self.get_context_data(context))
+        context_data = self.get_context_data(context, **context_data)
+        return render_to_string(self.get_template_name(), context_data)
