@@ -1,8 +1,9 @@
 {% load floppyforms django_backend_tags %}
 
 {% block row %}
-    <tr class="{% render row.states %}">
-        <th>
+    <tr class="{% block tr_classes %}{% endblock %} {% render row.states %}">
+        {% block head %}
+        <th scope="row">
             {% block label %}
                 {% comment %}<label{% if row.fields.0|id %} for="{{ row.fields.0|id }}"{% endif %}>{% endcomment %}
                 <label>
@@ -18,6 +19,8 @@
                 {% endif %}
             {% endblock %}
         </th>
+        {% endblock %}
+        {% block body %}
         {% for field in row_fields %}
             {% block field %}
                 <td class="{% render field.states %}">
@@ -25,5 +28,6 @@
                 </td>
             {% endblock %}
         {% endfor %}
+        {% endblock %}
     </tr>
 {% endblock %}
