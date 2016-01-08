@@ -2,6 +2,7 @@ from django.contrib.sites.models import Site
 from django.core.exceptions import PermissionDenied
 from django.http import Http404
 from django.utils import translation
+from django.utils.cache import add_never_cache_headers
 from django_backend.state import LANGUAGE_IDS, language, LANGUAGES
 from ..ajax import DialogResponseMixin
 from .permissions import BackendPermissionViewMixin
@@ -73,6 +74,13 @@ class ForceEnMixin(object):
         return super(ForceEnMixin, self).init_dispatch(request, *args, **kwargs)
 
 
+class NeverCacheMixin(object):
+    def dispatch(self, *args, **kwargs):
+        response = super(NeverCacheMixin, self).dispatch(*args, **kwargs)
+        add_never_cache_headers(response)
+        return response
+
+
 class BaseBackendViewMixin(object):
     backend = None
 
@@ -90,8 +98,8 @@ class BaseBackendViewMixin(object):
         pass
 
 
-class BackendViewMixin(DialogResponseMixin, SiteMixin, TranslationMixin,
-                       BackendPermissionViewMixin,
+class BackendViewMixin(NeverCacheMixin, DialogResponseMixin, SiteMixin,
+                       TranslationMixin, BackendPermissionViewMixin,
                        BaseBackendViewMixin):
     def dispatch(self, request, *args, **kwargs):
         try:
