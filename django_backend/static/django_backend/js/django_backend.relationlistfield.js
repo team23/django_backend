@@ -78,8 +78,8 @@ define(
        * Handler for add item button.
        */
       this.$element.on('click', '[data-dialog=add-relation]', function (event) {
+        event.preventDefault();
         openDialog.call(this);
-        return false;
       });
 
       /*
