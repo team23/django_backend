@@ -14,7 +14,7 @@ from .selectrelated import SelectRelatedField
 __all__ = (
     'FORMFIELD_OVERRIDES', 'FORMFIELD_OVERRIDE_DEFAULTS',
     'add_formfield_override', 'formfield_callback', 'BackendFormMetaclass',
-    'BaseBackendForm', 'BaseFilterForm', 'CopyOnTranslateInlineFormSetMixin',
+    'BaseBackendForm', 'CopyOnTranslateInlineFormSetMixin',
     'BaseBackendInlineFormSet')
 
 
@@ -81,11 +81,6 @@ class BaseBackendForm(SuperModelForm, forms.ModelForm):
     @property
     def extra_fields(self):
         return [self[name] for name in self.composite_fields]
-
-
-class BaseFilterForm(forms.Form):
-    def filter_queryset(self, queryset):
-        return queryset
 
 
 class CopyOnTranslateInlineFormSetMixin(object):

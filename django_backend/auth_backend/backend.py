@@ -3,11 +3,11 @@ from django.utils.translation import ugettext_lazy as _
 import floppyforms.__future__ as forms
 
 from ..backend.base.backends import ModelBackend
-from ..forms import BaseBackendForm, BaseFilterForm
+from ..forms import BaseBackendForm, FilterForm
 from .. import site
 
 
-class UserFilterForm(BaseFilterForm):
+class UserFilterForm(FilterForm):
     search = forms.CharField(label=_('Search'), required=False)
 
     def filter_queryset(self, queryset):
