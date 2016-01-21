@@ -75,16 +75,11 @@ class DialogResponseMixin(JsonResponseMixin):
 
     def render_to_response(self, context, **response_kwargs):
         if self.is_dialog():
-            context_data = {}
-            context_data.update(context_flatten(RequestContext(self.request)))
-            if context is not None:
-                if isinstance(context, Context):
-                    context = context_flatten(context)
-                context_data.update(context)
+            context = RequestContext(self.request, context)
+            context.update(self.get_context_data())
             json_data = self.get_json()
             json_data['html'] = render_to_string(
-                self.get_template_names(),
-                context_data)
+                self.get_template_names(), context)
             return self.render_json_response(json_data, **response_kwargs)
         else:
             return self.render_html_response(context, **response_kwargs)
