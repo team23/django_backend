@@ -12,3 +12,12 @@ install:
 - pip install tox
 script:
 - tox
+deploy:
+  provider: pypi
+  user: ddanier
+  password:
+    secure: ""
+  on:
+    tags: true
+    repo: team23/django_backend
+    condition: "$TOXENV = py27-18"
