@@ -16,7 +16,7 @@ deploy:
   provider: pypi
   user: ddanier
   password:
-    secure: ""
+    secure: F+ybT9ui3MuMuf8ywMjbE4c3+3WgHyZ+LxRhgkSLdllBGY0En4XKAaUzKWn4g9u5Eq2UfK0RylvXgWujJ5D8AEYO101ASYImX++gGJqvF0NCHAiSmiuSAJusU80K/n+vcX0cBJB2ERiTWe1Ql0o/xqITsdz24NWmALc2f+I72wI=
   on:
     tags: true
     repo: team23/django_backend
