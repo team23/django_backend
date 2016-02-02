@@ -18,7 +18,7 @@ Installation
 
 Add the following apps to your ``INSTALLED_APPS`` settings:
 
-.. code-block:: python
+.. code:: python
 
     INSTALLED_APPS = (
         ...
@@ -32,13 +32,13 @@ Add the following apps to your ``INSTALLED_APPS`` settings:
 
 Make sure ``SITE_ID`` is set:
 
-.. code-block:: python
+.. code:: python
 
     SITE_ID = 1
 
 Make sure ``LANGUAGE_CODE`` is valid:
 
-.. code-block:: python
+.. code:: python
 
     LANGUAGE_CODE = 'en'
 
@@ -46,7 +46,7 @@ Make sure ``LANGUAGE_CODE`` is valid:
 
 Add the following line to your ``urls.py``:
 
-.. code-block:: python
+.. code:: python
 
     url(r'^backend/', include(django_backend.site.get_urls(), namespace='django_backend')),
 
@@ -58,7 +58,7 @@ Development
 Run tests
 ---------
 
-.. code-block:: bash
+.. code:: bash
 
     # Set everything up. You want to do this in a virtualenv.
     pip install -r tests/requirements.txt
@@ -76,7 +76,7 @@ Run tests
 Build static assets
 -------------------
 
-.. code-block:: bash
+.. code:: bash
 
     npm install
     gulp build
@@ -86,6 +86,6 @@ Build static assets
 
 Or to create a development build that includes source maps, execute the ``dev`` task first, like:
 
-.. code-block:: bash
+.. code:: bash
 
     gulp dev build
