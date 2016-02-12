@@ -31,7 +31,31 @@ class BaseRelatedWidgetMixin(BindWidgetMixin):
         super(BaseRelatedWidgetMixin, self).__init__(*args, **kwargs)
 
     def get_inline_backend(self):
-        return self.inline_backend or self.bound_field.get_inline_backend()
+        if self.inline_backend is not None:
+            return self.inline_backend
+        return self.bound_field.get_inline_backend(
+            parent_backend=self.get_parent_backend())
+
+    def get_parent_backend(self):
+        """
+        That looks like a hack but gives a great deal of flexibility.
+
+        We try to retrieve the current backend in use (in which this widget is
+        rendered) from the template context. We then use this backend as a
+        starting point to look for a specific inline backend.
+
+        That way we prefer the nested inline backend before the global ones.
+        That makes it possible to overwrite the backends used for a
+        SelectRelatedField without overwriting the field itself.
+        """
+        from django_backend.backend import BaseBackend
+
+        if hasattr(self, 'context_instance'):
+            if 'backend' in self.context_instance:
+                backend = self.context_instance['backend']
+                if isinstance(backend, BaseBackend):
+                    return backend
+        return None
 
     def render(self, *args, **kwargs):
         kwargs.setdefault('template_name', self.get_template_name())
@@ -127,10 +151,22 @@ class BaseRelatedFieldMixin(object):
 class SelectRelatedField(BaseRelatedFieldMixin, forms.ModelChoiceField):
     inline_widget_class = SelectRelatedWidget
 
+    def __init__(self, *args, **kwargs):
+        self.inline_backend = kwargs.pop('inline_backend', None)
+        super(SelectRelatedField, self).__init__(*args, **kwargs)
+
     def get_model(self):
         return self.queryset.model
 
-    def get_inline_backend(self):
+    def get_inline_backend(self, parent_backend=None):
+        if self.inline_backend is not None:
+            return self.inline_backend
+
+        if parent_backend is not None:
+            return parent_backend.find(
+                model=self.get_model(),
+                registry='inline')
+
         from django_backend import site
         return site.find(model=self.get_model(), registry='inline')
 
@@ -166,5 +202,5 @@ class ManageRelatedField(BaseRelatedFieldMixin, forms.CharField):
     def get_model(self):
         return self.backend.model
 
-    def get_inline_backend(self):
+    def get_inline_backend(self, parent_backend=None):
         return self.inline_backend
