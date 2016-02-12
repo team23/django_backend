@@ -1,14 +1,12 @@
 {% load i18n django_backend_tags %}
 
-{% with inline_backend=parent_backend|default:inline_backend|find_inline_backend_by_model:inline_backend.model|default:inline_backend %}
-    <span class="select-related-field{% if not value %} is-blank{% endif %}"{% if required %}data-required {% endif %}>
-        <input type="hidden" name="{{ name }}"{% if value %} value="{{ value }}"{% endif %} {% include "floppyforms/attrs.html" %}{% if required %} required{% endif %} />
-        <span class="preview" data-default="-">{{ preview }}</span>
-        {% if not readonly and inline_backend and inline_backend|has_list_permission:user %}
-            &nbsp;&nbsp;<a href="{% backend_url inline_backend.urlnames.views.select.name %}" class="glyphicon glyphicon-pencil" data-dialog="select-related" title="{% trans "Edit" %}"></a>
-            {% if not required %}
-                &nbsp;&nbsp;<a class="glyphicon glyphicon-remove" data-set-null title="{% trans 'Remove' %}"></a>
-            {% endif %}
+<span class="select-related-field{% if not value %} is-blank{% endif %}"{% if required %}data-required {% endif %}>
+    <input type="hidden" name="{{ name }}"{% if value %} value="{{ value }}"{% endif %} {% include "floppyforms/attrs.html" %}{% if required %} required{% endif %} />
+    <span class="preview" data-default="-">{{ preview }}</span>
+    {% if not readonly and inline_backend and inline_backend|has_list_permission:user %}
+        &nbsp;&nbsp;<a href="{% backend_url inline_backend.urlnames.views.select.name %}" class="glyphicon glyphicon-pencil" data-dialog="select-related" title="{% trans "Edit" %}"></a>
+        {% if not required %}
+            &nbsp;&nbsp;<a class="glyphicon glyphicon-remove" data-set-null title="{% trans 'Remove' %}"></a>
         {% endif %}
-    </span>
-{% endwith %}
+    {% endif %}
+</span>
