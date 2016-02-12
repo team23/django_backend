@@ -14,7 +14,7 @@ class GenericRelationListWidget(BaseRelationListWidget):
         self.content_type_field_name = 'content_type'
         super(GenericRelationListWidget, self).__init__(*args, **kwargs)
 
-    def set_content_type_fieldname(self, content_type_field_name):
+    def set_content_type_field_name(self, content_type_field_name):
         self.content_type_field_name = content_type_field_name
 
     def get_context_data(self):

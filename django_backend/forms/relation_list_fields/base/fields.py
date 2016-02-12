@@ -28,7 +28,6 @@ class BaseRelationListField(InlineFormSetField):
         if self.related_models is None:
             self.related_models = self.get_related_models()
         self.widget.set_related_models(self.related_models)
-        self.widget.set_object_id_field_name(self.foreignkey_name)
 
     def get_related_models(self):
         # Needs to be implemented by subclasses.

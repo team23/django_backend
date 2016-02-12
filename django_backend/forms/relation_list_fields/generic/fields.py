@@ -35,4 +35,5 @@ class GenericRelationListField(BaseRelationListField):
             model,
             kwargs.get('order_field', None)))
         super(GenericRelationListField, self).__init__(*args, **kwargs)
+        self.widget.set_object_id_field_name('pk')
         self.widget.set_content_type_field_name('content_type')

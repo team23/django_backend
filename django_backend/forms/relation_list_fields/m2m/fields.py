@@ -32,6 +32,7 @@ class M2MListField(BaseRelationListField):
             self.foreignkey_name,
             kwargs.get('order_field', None)))
         super(M2MListField, self).__init__(*args, **kwargs)
+        self.widget.set_object_id_field_name(self.foreignkey_name)
 
     def get_related_models(self):
         fk = self.model._meta.get_field(self.foreignkey_name)
