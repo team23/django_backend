@@ -1,3 +1,13 @@
+0.4.0
+-----
+
+- Fix ``GenericRelationListField``. It's internal API was not used correctly
+  and therfore just threw errors.
+
+- Allow ``SelectRelatedField`` to pick up inline backends, searching from
+  currently active backend. That makes it easier to use customized nested
+  inline backends.
+
 0.3.0
 -----
 
