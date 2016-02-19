@@ -1,3 +1,14 @@
+0.4.1
+-----
+
+- Make ``GenericRelationListField`` determine the names of the ``object_id``
+  and ``content_type`` fields by inspecting the used ``GenericForeignKey``.
+  That will raise errors about wrong usage earlier.
+
+- Fix JS for ``GenericRelationListField`` if used nested multiple levels deep.
+  A click handler was called in every instance in the modal stack, so the
+  behaviour was different depending on the number of modals.
+
 0.4.0
 -----
 
