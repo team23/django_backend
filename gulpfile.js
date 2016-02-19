@@ -15,7 +15,6 @@ var config = {
             // jQuery
             'django_backend/static/django_backend/libs/jquery/dist/jquery.min.js',
             'django_backend/static/django_backend/libs/jquery-ui/ui/minified/jquery-ui.min.js',
-            'django_backend/static/django_backend/js/jquery.django-csrf.js',
 
             // Bootstrap
             'django_backend/static/django_backend/libs/bootstrap-sass/assets/javascripts/bootstrap.min.js',
@@ -26,28 +25,9 @@ var config = {
 
             // RequireJS
             'django_backend/static/django_backend/libs/requirejs/require.js',
-            'django_backend/static/django_backend/js/require-init.js',
 
             // Backend
-            'django_backend/static/django_backend/js/django_backend.partialcontentloader.js',
-            'django_backend/static/django_backend/js/django_backend.widget.js',
-            'django_backend/static/django_backend/js/django_backend.dialog.js',
-            'django_backend/static/django_backend/js/django_backend.formdata.js',
-            'django_backend/static/django_backend/js/django_backend.framedcontent.js',
-            'django_backend/static/django_backend/js/django_backend.ajaxdialog.js',
-            'django_backend/static/django_backend/js/django_backend.selectall.js',
-            'django_backend/static/django_backend/js/django_backend.instantsubmit.js',
-            'django_backend/static/django_backend/js/django_backend.pagecontext.js',
-            'django_backend/static/django_backend/js/django_backend.filterform.js',
-            'django_backend/static/django_backend/js/django_backend.forms.js',
-            'django_backend/static/django_backend/js/django_backend.formset.js',
-            'django_backend/static/django_backend/js/django_backend.opendialog.js',
-            'django_backend/static/django_backend/js/django_backend.relationlistfield.js',
-            'django_backend/static/django_backend/js/django_backend.selectrelated.js',
-            'django_backend/static/django_backend/js/django_backend.inlinerelated.js',
-            'django_backend/static/django_backend/js/django_backend.managerelated.js',
-            // 'django_backend/static/django_backend/js/main.js',
-            'django_backend/static/django_backend/js/init.js',
+            'django_backend/static/django_backend/js/**/*.js',
         ],
         watch: [
             'django_backend/static/django_backend/js/**/*.js',
