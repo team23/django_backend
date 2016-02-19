@@ -79,6 +79,7 @@ define(
        */
       this.$element.on('click', '[data-dialog=add-relation]', function (event) {
         event.preventDefault();
+        event.stopPropagation();
         openDialog.call(this);
       });
 
