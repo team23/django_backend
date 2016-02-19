@@ -47,9 +47,11 @@
 
                 {% with relation_object=inline_form.instance|getattr:relation_attribute %}
                 {% with relation_object=relation_object.get_real_instance|default:relation_object %}
-                {% with inline_backend=backend|find_inline_backend_by_model:relation_object %}
-                    {% include "django_backend/relation_list_fields/_generic_relation_inline.html" with backend=inline_backend object=relation_object %}
-                {% endwith %}
+                {% if relation_object %}
+                    {% with inline_backend=backend|find_inline_backend_by_model:relation_object %}
+                        {% include "django_backend/relation_list_fields/_generic_relation_inline.html" with backend=inline_backend object=relation_object %}
+                    {% endwith %}
+                {% endif %}
                 {% endwith %}
                 {% endwith %}
             </div>
