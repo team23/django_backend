@@ -1,3 +1,15 @@
+0.4.2 (in development)
+----------------------
+
+- Validate selected elements in ``GenericRelationListField`` against the
+  allowed content types. That makes sure no unwanted objects end up in the
+  list.
+- Allow name of generic foreign key field to be set explicitly in
+  ``GenericRelationListField``. You can use the ``generic_fk_name`` argument
+  for this.
+- Adding or changing a new item in a ``GenericRelationListField`` will also
+  update the edit link based on the update url in the JSON response.
+
 0.4.1
 -----
 
