@@ -9,6 +9,9 @@
   for this.
 - Adding or changing a new item in a ``GenericRelationListField`` will also
   update the edit link based on the update url in the JSON response.
+- JavaScript: The PageContext got the capability to watch the element that
+  represents the page context in the DOM. That allows us to close obsolete
+  tooltips even if their original trigger got already removed from the page.
 
 0.4.1
 -----
