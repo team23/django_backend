@@ -10,10 +10,7 @@ from .widgets import GenericRelationListWidget
 __all__ = ('GenericRelationListField',)
 
 
-def get_default_form(model, order_field, related_models):
-    ct_field = 'content_type'
-    fk_field = 'object_id'
-
+def get_default_form(model, ct_field, fk_field, order_field, related_models):
     form_fields = (ct_field, fk_field)
     if order_field:
         form_fields = (order_field,) + form_fields
@@ -48,23 +45,27 @@ class GenericRelationListField(BaseRelationListField):
             'related_models argument is required')
 
         model = kwargs['model']
+        generic_fk = self.get_generic_foreign_key(model)
         kwargs.setdefault('form', get_default_form(
-            model,
-            kwargs.get('order_field', None),
+            model=model,
+            order_field=kwargs.get('order_field', None),
+            fk_field=generic_fk.fk_field,
+            ct_field=generic_fk.ct_field,
             related_models=kwargs['related_models']))
         super(GenericRelationListField, self).__init__(*args, **kwargs)
 
         self.determine_generic_relation_fields(model)
 
-    def determine_generic_relation_fields(self, model):
+    def get_generic_foreign_key(self, model):
         generic_fks = [
             field
             for field in model._meta.get_fields()
             if isinstance(field, GenericForeignKey)]
-
         assert len(generic_fks) == 1, (
             'Given model {model} requires exactly one GenericForeignKey.')
+        return generic_fks[0]
 
-        generic_fk = generic_fks[0]
+    def determine_generic_relation_fields(self, model):
+        generic_fk = self.get_generic_foreign_key(model)
         self.widget.set_object_id_field_name(generic_fk.fk_field)
         self.widget.set_content_type_field_name(generic_fk.ct_field)
