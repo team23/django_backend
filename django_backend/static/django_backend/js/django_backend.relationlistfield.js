@@ -119,6 +119,13 @@ define(
       };
 
       $itemFields.find('input').each(updateFieldData);
+
+      var $updateLink = $itemFields.find('[data-dialog=update-relation]');
+      if (data.urls.update) {
+        $updateLink.attr('href', data.urls.update).show();
+      } else {
+        $updateLink.hide();
+      }
     },
 
     /**
