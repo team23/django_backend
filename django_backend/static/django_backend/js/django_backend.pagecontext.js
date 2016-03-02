@@ -119,7 +119,10 @@ define(
       this.$element.attr('data-pagecontext', '');
 
       // Initialize bootstrap widgets.
-      this.$element.find('[data-toggle="tooltip"]').tooltip({html: true, container: 'body'});
+      this.$element.find('[data-toggle="tooltip"]').tooltip({
+        html: true,
+        container: '[data-pagecontext]',
+      });
       this.addWatcher(this.watchTooltip.bind(this));
 
       this.$element.find('[data-toggle="popover"]').popover({html: true});
