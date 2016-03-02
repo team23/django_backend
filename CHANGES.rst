@@ -1,5 +1,5 @@
-0.4.2 (in development)
-----------------------
+0.4.2
+-----
 
 - Validate selected elements in ``GenericRelationListField`` against the
   allowed content types. That makes sure no unwanted objects end up in the
