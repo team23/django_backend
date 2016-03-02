@@ -44,6 +44,8 @@ class GenericRelationListField(BaseRelationListField):
         assert 'related_models' in kwargs, (
             'related_models argument is required')
 
+        self.generic_fk_name = kwargs.pop('generic_fk_name', None)
+
         model = kwargs['model']
         generic_fk = self.get_generic_foreign_key(model)
         kwargs.setdefault('form', get_default_form(
@@ -57,6 +59,8 @@ class GenericRelationListField(BaseRelationListField):
         self.determine_generic_relation_fields(model)
 
     def get_generic_foreign_key(self, model):
+        if self.generic_fk_name is not None:
+            return model._meta.get_field(self.generic_fk_name)
         generic_fks = [
             field
             for field in model._meta.get_fields()
