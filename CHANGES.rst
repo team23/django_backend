@@ -12,6 +12,10 @@
 - JavaScript: The PageContext got the capability to watch the element that
   represents the page context in the DOM. That allows us to close obsolete
   tooltips even if their original trigger got already removed from the page.
+- JavaScript: The pagecontext element gets the data-pagecontext attribute to
+  make it queryable.
+- JavaScript: Bootstrap tooltips are now attached to pagecontext elements
+  instead of the body. That will better capsulate them into the pagecontext.
 
 0.4.1
 -----
