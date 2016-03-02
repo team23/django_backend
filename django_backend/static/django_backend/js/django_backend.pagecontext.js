@@ -27,6 +27,14 @@ define(
 
   "use strict";
 
+
+  function isInDom($element) {
+    // Fastes way to check if an element is still in the DOM.
+    // See here for details: http://jsperf.com/jquery-element-in-dom/2
+    return $.contains(document.documentElement, $element[0]);
+  }
+
+
   var PageContext = Stapes.subclass({
     defaults: {},
 
@@ -42,6 +50,62 @@ define(
         // Inherit options from the parent as well.
         parent ? parent.options : {},
         options);
+
+      this._watchers = [];
+      this._watchDelay = 200;
+      this._watchInterval = null;
+    },
+
+    /*
+     * Add a new watcher for this page context. The watchers are supposed to
+     * health check parts of the page context.
+     */
+    addWatcher: function (watcher) {
+      this._watchers.push(watcher);
+    },
+
+    startWatcher: function () {
+      if (this._watchInterval === null) {
+        this._watchInterval = setInterval(this.watch.bind(this), this._watchDelay);
+      }
+    },
+
+    stopWatcher: function () {
+      clearInterval(this._watchInterval);
+      this._watchInterval = null;
+    },
+
+    /*
+     * Walks through all watchers and calls them once.
+     *
+     * It will stop the watch interval if this page context is no longer in
+     * the DOM.
+     */
+    watch: function () {
+      this._watchers.forEach(function (watcher) {
+        watcher(this.$element);
+      }.bind(this));
+
+      if (!isInDom(this.$element)) {
+        this.stopWatcher();
+      }
+    },
+
+    /*
+     * Takes care of checking if a tooltip trigger is still in the DOM. If
+     * it's not the case, we close the according tooltip. Reason is that
+     * otherwise an open tooltip will stay there forever if the trigger element
+     * gets removed, for example by closing a modal (with ESC) that contains
+     * the element.
+     */
+    watchTooltip: function ($element) {
+      var $tooltips = $element.find('[data-toggle="tooltip"]');
+      $tooltips.each(function () {
+        var $tooltip = $(this);
+        if (!isInDom($tooltip)) {
+          $tooltip.tooltip('destroy');
+        }
+      });
     },
 
     init: function ($element) {
@@ -54,6 +118,8 @@ define(
 
       // Initialize bootstrap widgets.
       this.$element.find('[data-toggle="tooltip"]').tooltip({html: true, container: 'body'});
+      this.addWatcher(this.watchTooltip.bind(this));
+
       this.$element.find('[data-toggle="popover"]').popover({html: true});
       this.$element.find('[data-toggle="dropdown"]').dropdown();
 
@@ -120,6 +186,8 @@ define(
       });
 
       opendialog.init(this);
+
+      this.startWatcher();
     },
 
     inherit: function (options) {
