@@ -116,6 +116,8 @@ define(
       }
       var self = this;
 
+      this.$element.attr('data-pagecontext', '');
+
       // Initialize bootstrap widgets.
       this.$element.find('[data-toggle="tooltip"]').tooltip({html: true, container: 'body'});
       this.addWatcher(this.watchTooltip.bind(this));
