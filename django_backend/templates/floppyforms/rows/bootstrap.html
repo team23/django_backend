@@ -4,10 +4,9 @@
     {% if not inline_label %}
         {% block label %}
           {% if field|id %}<label for="{{ field|id }}">{% endif %}
-          {{ label }}
-          {% if label|last not in ".:!?" %}:{% endif %}
+          {{ label }}{% if label|last not in ".:!?" %}:{% endif %}
           {% block help_text %}{% if field.help_text %}
-          <span data-content="{{ field.help_text }}" data-toggle="popover" data-trigger="hover" data-placement="top">(?)</span>
+          <span data-content="{{ field.help_text }}" data-toggle="popover" data-trigger="hover" data-placement="top"><span class="glyphicon glyphicon-question-sign"></span></span>
           {% endif %}{% endblock %}
           {% if field|id %}</label>{% endif %}
         {% endblock %}
@@ -28,4 +27,3 @@
     {% endwith %}
 </div><!--- .control-group{% if field.errors %}.error{% endif %} -->
 {% endfor %}{% endblock %}
-
