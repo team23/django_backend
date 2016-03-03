@@ -1,5 +1,5 @@
-0.4.3 (in development)
-----------------------
+0.4.3
+-----
 
 - Improve styling of bootstrap row template. We integrated a ?-icon for the
   help text and removed whitespace between the label and the ":" after the
