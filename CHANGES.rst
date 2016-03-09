@@ -1,3 +1,17 @@
+0.5.0 (in development)
+----------------------
+
+- The widgets ``GenericRelationListWidget`` and ``M2MListWidget`` feature a
+  drop down to add new elements. The list used to link to the relation's
+  ``create`` view. We found this to be not useful for all cases, since you
+  might want to select existing items.
+
+  We changed the view to be now the ``select`` by default. In general you can
+  add new items from the select view then as well with the add button. If you
+  don't want to allow selecting new items for one specific backend, you can
+  always overwrite the ``select`` view and replace it with for example a
+  create view instance.
+
 0.4.3
 -----
 

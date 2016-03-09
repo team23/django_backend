@@ -19,7 +19,7 @@
                 <ul class="dropdown-menu" aria-labelledby="{{ formset.prefix }}-add-button">
                     {% for model in related_models %}
                     {% with opts=model|model_opts inline_backend=backend|find_inline_backend_by_model:model %}
-                    <li><a href="{% backend_url inline_backend.urlnames.views.create.name %}" data-dialog="add-relation">{{ opts.verbose_name }}</a></li>
+                        <li><a href="{% backend_url inline_backend.urlnames.views.select.name %}" data-dialog="add-relation">{{ opts.verbose_name }}</a></li>
                     {% endwith %}
                     {% endfor %}
                 </ul>
