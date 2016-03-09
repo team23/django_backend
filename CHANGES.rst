@@ -11,6 +11,8 @@
   don't want to allow selecting new items for one specific backend, you can
   always overwrite the ``select`` view and replace it with for example a
   create view instance.
+- Close dropdown when clicking link in *add new* menu in relation list
+  widgets.
 
 0.4.3
 -----

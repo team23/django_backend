@@ -69,7 +69,7 @@ define(
 
         // Close dropdown if dialog was triggered from with-in a dropdown
         // menu.
-        $(this).closest('.btn-group.open').removeClass('open');
+        $(this).closest('.btn-group.open, .dropdown.open').removeClass('open');
 
         dialog.open();
       };
