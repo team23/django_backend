@@ -3,7 +3,7 @@ from .group import Group  # noqa
 from .sitebackend import SiteBackend
 
 
-__version__ = '0.5.0.dev1'
+__version__ = '0.5.0'
 
 
 default_app_config = 'django_backend.apps.DjangoBackendConfig'

@@ -1,5 +1,5 @@
-0.5.0 (in development)
-----------------------
+0.5.0
+-----
 
 - The widgets ``GenericRelationListWidget`` and ``M2MListWidget`` feature a
   drop down to add new elements. The list used to link to the relation's
