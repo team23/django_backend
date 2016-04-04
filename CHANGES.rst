@@ -1,3 +1,12 @@
+0.6.0 (in development)
+----------------------
+
+- Disable form buttons after submit so that user cannot double click a form
+  submit button. That should prevent (most) doubled submits. Server side
+  validation still needs to be in place though.
+- Call the ``attachEventHandlers`` after ``prepareContent`` method in
+  ``PartialContentLoader``. That makes extending it easier.
+
 0.5.0
 -----
 
