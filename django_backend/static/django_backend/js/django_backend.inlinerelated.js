@@ -36,7 +36,6 @@ define(
         });
 
         dialog.on('load', function (data) {
-          console.log('GOT inline related', data);
           if (data.action == 'select') {
             self.addObject(data.inline_related);
             dialog.close();

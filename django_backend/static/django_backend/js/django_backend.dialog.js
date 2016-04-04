@@ -146,7 +146,6 @@ define('django_backend.dialog', ['jquery', 'stapes', 'django_backend.widget', 'd
 
             $parent.css('height', 'auto');
             self.$dialog.css('height', 'auto');
-            console.log($parent.height(), self.dialog_max_height);
             if ($parent.height() >= self.dialog_max_height) {
               $parent.css('height', self.dialog_max_height);
               $parent.css('top', (body_height-$parent.height()-border_tb_width)/2);
