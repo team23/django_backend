@@ -17,9 +17,10 @@ define('django_backend.ajaxdialog', ['jquery', 'django_backend.formdata', 'djang
       this.prepareDialog(data.title, $content);
     },
 
-    prepareContent: function ($content) {
+    attachEventHandlers: function ($content) {
       var self = this;
-      $content = AjaxDialog.parent.prepareContent.call(this, $content);
+
+      AjaxDialog.parent.attachEventHandlers.call(this, $content);
 
       $content.on('click', 'a', function (e) {
         var $a = $(this);
@@ -51,8 +52,6 @@ define('django_backend.ajaxdialog', ['jquery', 'django_backend.formdata', 'djang
             .attr('value', $button.attr('value')));
         }
       });
-
-      return $content;
     },
 
     load: function (url, success) {

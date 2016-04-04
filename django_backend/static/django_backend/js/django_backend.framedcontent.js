@@ -27,8 +27,12 @@ define('django_backend.framedcontent', ['jquery', 'django_backend.formdata', 'dj
     },
 
     prepareContent: function ($content) {
-      var self = this;
       $content = $('<div class="framed-content" />').append($content);
+      return $content;
+    },
+
+    attachEventHandlers: function ($content) {
+      var self = this;
 
       $content.on('click', 'a', function (e) {
         var $a = $(this);
@@ -60,8 +64,6 @@ define('django_backend.framedcontent', ['jquery', 'django_backend.formdata', 'dj
             .attr('value', $button.attr('value')));
         }
       });
-
-      return $content;
     },
 
     load: function (url) {

@@ -39,10 +39,22 @@ define('django_backend.dialog', ['jquery', 'stapes', 'django_backend.widget', 'd
      *
      *   $content.filter('form').add($content.find('form'));
      *
+     * This method should only take care of representational stuff. Event
+     * handling should be done in `attachEventHandlers`.
+     *
      */
     prepareContent: function ($content) {
       $content = $('<div class="dialog-content" />').append($content);
       return $content
+    },
+
+    /*
+     * Event handlers should not be registered in `prepareContent` as we want
+     * more control in subclasses if we want to register the new event handlers
+     * before or after the existing ones.
+     */
+    attachEventHandlers: function ($content) {
+
     },
 
     prepareDialog: function (title, $content) {

@@ -33,6 +33,9 @@ define('django_backend.partialcontentloader', ['jquery'], function ($) {
         if (this.prepareContent) {
             $content = this.prepareContent($content);
         }
+        if (this.attachEventHandlers) {
+            this.attachEventHandlers($content);
+        }
         var pageContext = this.getNewPageContext();
         pageContext.init($content);
         return $content;
