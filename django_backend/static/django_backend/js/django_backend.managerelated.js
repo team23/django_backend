@@ -45,8 +45,12 @@ define(
 
         dialog.on('load', function (data) {
           if (data.action) {
-            dialog.close();
-            this.load(this.options.url);
+            if (data.action == 'dismiss') {
+              dialog.goBack();
+            } else {
+              dialog.close();
+              this.load(this.options.url);
+            }
           }
         }.bind(this));
 

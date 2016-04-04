@@ -99,7 +99,7 @@ define(
             dialog.close();
           }
           if (data.action == 'dismiss') {
-            dialog.close();
+            dialog.goBack();
           }
         });
 
