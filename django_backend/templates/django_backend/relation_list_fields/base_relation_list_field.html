@@ -51,6 +51,8 @@
                     {% with inline_backend=backend|find_inline_backend_by_model:relation_object %}
                         {% include "django_backend/relation_list_fields/_generic_relation_inline.html" with backend=inline_backend object=relation_object %}
                     {% endwith %}
+                {% else %}
+                        {% include "django_backend/relation_list_fields/_generic_relation_inline_no_content.html" with backend=inline_backend object=relation_object %}
                 {% endif %}
                 {% endwith %}
                 {% endwith %}
