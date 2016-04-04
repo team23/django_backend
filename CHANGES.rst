@@ -6,6 +6,18 @@
   validation still needs to be in place though.
 - Call the ``attachEventHandlers`` after ``prepareContent`` method in
   ``PartialContentLoader``. That makes extending it easier.
+- Previously we found ourselve in confusing situation when multiple modals
+  where open and in the top one you clicked the delete button. This opened the
+  delete confirmation. If the user then clicked "dismiss" in the confirmation,
+  the modal was closed. This was confusing as it was not clear that the top
+  modal was closed but the now displaying underlying modal has different data
+  in it. In this case a re-displaying the update view would make more sense.
+
+  So we added a way for a modal to go the previous URL (like the browsers go
+  back button). If the users triggers now a dismiss action, the modal will go
+  one view back in most cases. If there is no previous URL recorded, the modal
+  will close. This happens for example if you deep link to the delete view with
+  a modal.
 
 0.5.0
 -----
