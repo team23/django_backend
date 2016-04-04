@@ -1,5 +1,5 @@
-0.6.0 (in development)
-----------------------
+0.6.0
+-----
 
 - Disable form buttons after submit so that user cannot double click a form
   submit button. That should prevent (most) doubled submits. Server side
