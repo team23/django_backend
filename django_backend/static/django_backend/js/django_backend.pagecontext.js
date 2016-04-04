@@ -6,6 +6,7 @@ define(
       'django_backend.selectall',
       'django_backend.instantsubmit',
       'django_backend.filterform',
+      'django_backend.forms',
       'django_backend.formset',
       'django_backend.inlinerelated',
       'django_backend.managerelated',
@@ -18,6 +19,7 @@ define(
       SelectAll,
       InstantSubmit,
       FilterForm,
+      forms,
       FormSet,
       InlineRelated,
       ManageRelated,
@@ -127,6 +129,9 @@ define(
 
       this.$element.find('[data-toggle="popover"]').popover({html: true});
       this.$element.find('[data-toggle="dropdown"]').dropdown();
+
+      // Initialize forms.
+      forms.init(this.$element);
 
       // Initialize the filter forms.
       this.$element.find('.filter-form').each(function () {

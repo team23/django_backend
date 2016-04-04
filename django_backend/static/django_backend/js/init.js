@@ -1,10 +1,9 @@
 require(
     [
         'jquery',
-        'django_backend.forms',
         'django_backend.pagecontext'
     ],
-    function ($, forms, PageContext) {
+    function ($, PageContext) {
 
   "use strict";
 
@@ -14,8 +13,6 @@ require(
     var pageContext = new PageContext(undefined, {});
 
     pageContext.init($pageContent);
-
-    forms.init();
   });
 
 });
