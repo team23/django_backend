@@ -11,6 +11,30 @@ define('django_backend.ajaxdialog', ['jquery', 'django_backend.formdata', 'djang
       // We will keep track of the currently active URL if the user followed a
       // link.
       this.url = this.options.url;
+      this._urlHistory = [];
+    },
+
+    getHistory: function (url) {
+      return this._urlHistory;
+    },
+
+    pushUrl: function (url) {
+      console.log('push', url);
+      if (this._urlHistory[this._urlHistory.length - 1] !== url) {
+        this._urlHistory.push(url);
+      }
+    },
+
+    goBack: function () {
+        this._urlHistory.pop();
+        var lastUrl = this._urlHistory.pop();
+        if (lastUrl === undefined) {
+          this.close();
+        } else {
+          this.load(
+            lastUrl,
+            this.handleDataResponse.bind(this));
+        }
     },
 
     gotNewContent: function ($content, data) {
@@ -54,8 +78,17 @@ define('django_backend.ajaxdialog', ['jquery', 'django_backend.formdata', 'djang
       });
     },
 
-    load: function (url, success) {
+    load: function (url, success, options) {
       var self = this;
+
+      options = $.extend({
+        recordInHistory: true,
+      }, options);
+
+      if (options.recordInHistory) {
+        this.pushUrl(url);
+      }
+
       this.url = url;
       $.ajax(this.url, {
         cache: false,
