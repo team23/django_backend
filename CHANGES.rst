@@ -18,6 +18,11 @@
   one view back in most cases. If there is no previous URL recorded, the modal
   will close. This happens for example if you deep link to the delete view with
   a modal.
+- Relation list items now will also have a drag handle and remove icon if the
+  relation object cannot be displayed (for example if the content type id is
+  not valid). We need to have the remove icon visible, otherwise an object with
+  ian nvalid content type cannot be deleted by the user which makes it
+  impossible for the user to save the object with the invalid relation.
 
 0.5.0
 -----
