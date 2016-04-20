@@ -21,7 +21,16 @@ class TranslationMixin(object):
                 raise Http404
         if self.language_id is None:
             self.language_id = language.get_default()
-        self.language = [lang for lang in LANGUAGES if lang[0] == self.language_id][0]
+
+        languages = [
+            lang
+            for lang in LANGUAGES
+            if lang[0] == self.language_id
+        ]
+        if languages:
+            self.language = languages[0]
+        else:
+            self.language = (self.language_id, self.language_id)
 
         self.backend.language.active = self.language_id
         return self.language_id
