@@ -59,6 +59,17 @@ Add the following code to hook up the backend urls in your ``urls.py``:
 
 TODO: continue, propably not complete yet
 
+Examples
+========
+
+A good way to get a feel about how django_backend can be used, is to have a
+look at the examples in the ``examples/`` directory of this project. The
+examples are working django projects that you are able to run and play around
+with.
+
+Have a look at the examples, they all have a separate README that describes how
+to setup them up and get started.
+
 Development
 ===========
 
