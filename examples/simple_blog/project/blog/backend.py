@@ -46,10 +46,11 @@ class PostBackend(ModelBackend):
             'author': BackendColumn(
                 _('Author'),
                 template_name='django_backend/blog/columns/_author.html',
-                position=100
+                position=100,
+                sort_field='author__name',
             ),
             'preview': BackendColumn(
-                _('Author'),
+                _('Preview'),
                 template_name='django_backend/blog/columns/_preview.html',
                 position=200
             ),
