@@ -1,13 +1,31 @@
-Basic example
-=============
+A blogging app
+==============
 
-This basic examples shows you how to register a backend, create a filter form
-for one and how to customize the columns in the list view of a backend.
+This example contains a simple blogging app where we use django_backend to
+provide the editorial interface.
 
-The hotspots of this example are in:
+The blogging app has the following characteristics:
 
-- Defining the backends happens in ``project/blog/backend.py``.
-- The base site is hooked up into the url config in ``project/urls.py``.
+- There are authors who have a name.
+- There are post that have a title, a content text, and an author associated.
+- The posts have a pub date that controls if they are visible in the frontend.
+
+This example only contains the backend code. To keep it simple we don't include
+any frontend code to display the posts.
+
+In this example you see the following features of django_backend in use:
+
+In ``project/blog/backend.py`` you can see ...
+
+- … how we define a custom backend for ``Post``
+- … how we define a filter form for the post backend
+- … how we define custom list columns for the post backend
+- … how we add a custom view to the post backend
+- … how we define an inline backend for ``Author``
+- … how we use a group to display the backends in the backend sidebar
+
+Also have a look in ``project/urls.py`` to see how we hook up the urls in the
+project.
 
 Get started
 -----------
