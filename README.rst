@@ -45,11 +45,17 @@ Make sure ``LANGUAGE_CODE`` is valid:
 **Warning:** Django's default language code is *not* valid, as "en-us" is not
 included in ``settings.LANGUAGES``.
 
-Add the following line to your ``urls.py``:
+Add the following code to hook up the backend urls in your ``urls.py``:
 
 .. code:: python
 
-    url(r'^backend/', include(django_backend.site.get_urls(), namespace='django_backend')),
+    import django_backend
+    # ...
+
+    urlpatterns = [
+        # ...
+        url(r'^backend/', include(django_backend.site.get_urls(), namespace='django_backend')),
+    ]
 
 TODO: continue, propably not complete yet
 
