@@ -18,7 +18,7 @@ class Post(models.Model):
     title = models.CharField(max_length=50)
     text = models.TextField()
 
-    pub_date = models.DateTimeField(auto_now_add=True)
+    pub_date = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         verbose_name = _('Post')
