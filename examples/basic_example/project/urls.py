@@ -16,10 +16,14 @@ Including another URLconf
 from django.conf.urls import include
 from django.conf.urls import url
 from django.contrib import admin
+from django.shortcuts import redirect
 from django_backend import site
 
 
 urlpatterns = [
+    # Redirect automatically to the backend, for convenience in this example.
+    url(r'^$', lambda request: redirect('/backend/')),
+
     url(r'^backend/', include(site.get_urls(), namespace='django_backend')),
 
     url(r'^admin/', admin.site.urls),
