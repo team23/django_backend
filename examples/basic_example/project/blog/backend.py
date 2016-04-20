@@ -6,6 +6,12 @@ from django_backend.backend.base.backends import ModelBackend
 from django_backend.backend.columns import BackendColumn
 from django_backend import Group
 from django_backend import site
+
+# These are required for hooking up the custom "preview" view in the
+# PostBackend.
+from django_backend.backend.base.views import BackendReadView
+from django_viewset import URLView
+
 from .models import Author
 from .models import Post
 
@@ -24,16 +30,28 @@ class PostFilterForm(SearchFilterFormMixin, FilterForm):
         return queryset.filter(author=author)
 
 
+class PostPreviewView(BackendReadView):
+    def get_template_name(self, **kwargs):
+        return 'blog/post_preview.html'
+
+
 class PostBackend(ModelBackend):
     filter_form_class = PostFilterForm
+
+    preview = URLView(r'^(?P<pk>\d+)/preview/$', PostPreviewView)
 
     def get_list_columns(self):
         columns = super(PostBackend, self).get_list_columns()
         columns.update({
             'author': BackendColumn(
                 _('Author'),
-                template_name='blog/django_backend/columns/_author.html',
+                template_name='django_backend/blog/columns/_author.html',
                 position=100
+            ),
+            'preview': BackendColumn(
+                _('Author'),
+                template_name='django_backend/blog/columns/_preview.html',
+                position=200
             ),
         })
         return columns
