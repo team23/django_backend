@@ -42,7 +42,8 @@ Make sure ``LANGUAGE_CODE`` is valid:
 
     LANGUAGE_CODE = 'en'
 
-**Warning:** Django's default language code is *not* valid, as "en-us" is not included in settings.LANGUAGES.
+**Warning:** Django's default language code is *not* valid, as "en-us" is not
+included in ``settings.LANGUAGES``.
 
 Add the following line to your ``urls.py``:
 

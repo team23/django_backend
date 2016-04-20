@@ -27,8 +27,8 @@ Now the example is ready to use, you can start it by running::
     python manage.py createsuperuser
     python manage.py runserver
 
-Now visit the backend at `http://localhost:8000/backend/ <backend_url>` and log
-in with the credentials you have entered during the ``createsuperuser``
+Now visit the backend at `http://localhost:8000/backend/ <backend_url>`_ and
+log in with the credentials you have entered during the ``createsuperuser``
 command.
 
 .. _backend_url: http://localhost:8000/backend/
