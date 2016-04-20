@@ -40,7 +40,7 @@ Get started
 
 Now the example is ready to use, you can start it by running::
 
-    cd examples/basic_example
+    cd examples/simple_blog
     python manage.py migrate
     python manage.py createsuperuser
     python manage.py runserver
