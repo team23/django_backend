@@ -17,7 +17,7 @@ Get started
 - Create a virtualenv and activate it
 - Run these commands::
 
-    pip install Django
+    pip install "Django==1.8.12"
     pip install -e .
 
 Now the example is ready to use, you can start it by running::
