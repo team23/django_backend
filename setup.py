@@ -28,7 +28,7 @@ setup(
     packages=find_packages(
         exclude=['examples', 'examples.*', 'tests', 'tests.*']),
     include_package_data=True,
-    url='https://github.com/team23/django-backend',
+    url='https://github.com/team23/django_backend',
     license='BSD licence, see LICENSE file',
     description='A replacement of django.contrib.admin',
     long_description=u'\n\n'.join((
